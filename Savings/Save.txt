@@ -1,0 +1,49 @@
+AppDb
+
+        public SqlDbContext(DbContextOptions<SqlDbContext> options)
+           : base(options)
+        {
+        }
+        public DbSet<Manager> Manager { get; set; }
+        public DbSet<ZiekModel> ZiekModel { get; set; }
+        public DbSet<Dagdeel> Dagdeel { get; set; }
+        public DbSet<RestaurantModel> Restaurant { get; set; }
+
+
+
+GetManagerService 
+
+
+        private readonly SqlDbContext _context;
+
+        public GetManagersService(SqlDbContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<List<Manager>> GetManagersAsync()
+        {
+            return await _context.Manager.ToListAsync();
+        }
+
+Razor 
+    @if (managers == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+    @foreach (var manager in managers)
+    {
+        <p> @manager.FirstName </p>
+
+    }}
+
+    private WeatherForecast[] forecasts;
+    List<Manager> managers;
+
+    protected override async Task OnInitializedAsync()
+    {
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+        managers = await @Service.GetManagersAsync();
+    }

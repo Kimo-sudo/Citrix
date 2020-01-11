@@ -1,0 +1,40 @@
+﻿@page
+@model Citrix.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Verwijderen</h1>
+
+<h3>Weet je zeker dat je deze manager wilt verwijderen?</h3>
+<div>
+    <h4>Manager</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Manager.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Manager.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Manager.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Manager.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Manager.PhotoPath)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Manager.PhotoPath)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Manager.ID" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Terug naar de lijst</a>
+    </form>
+</div>

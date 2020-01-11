@@ -1,0 +1,102 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+
+}
+
+<div class="card-deck">
+
+    <div class="card">
+        <img class="card-img-top" src="~/images/Card/DagmailCard.jpg" alt="Card image cap">
+        <div class="card-body">
+
+            @if (Model.Dagdeels != null)
+            {
+                <div class="card-body">
+                    <h5> <b> Doelstelling shift  </b> </h5>
+                    <p> @Model.Dagdeels.DagDoelstelling </p>
+                    <h5> <b> Resultaat shiftdoelstelling </b> </h5>
+                    <p> @Model.Dagdeels.ResultaatDagDoelStelling</p>
+
+                    <p> <b> Omzet </b> </p>
+
+                    <p> @Model.Dagdeels.Omzet</p>
+
+                    <p> <b> Vooraadbeheer</b> </p>
+
+                    <p> @Model.Dagdeels.Voorraadbeheer</p>
+
+                    <p> <b> Personeel </b> </p>
+
+                    <p> @Model.Dagdeels.Personeel </p>
+
+                    <p> <b> Apperatuur </b> </p>
+
+                    <p> @Model.Dagdeels.Apperatuur  </p>
+
+                    <p> <b> Overige </b> </p>
+
+                    <p>  @Model.Dagdeels.Overig </p>
+                </div>
+
+                <div>
+                    <a asp-page="./dagmail/Details" asp-route-id="@Model.Dagdeels.ID" class="btn btn-primary">Ga Hierheen</a>
+                </div>
+
+            }
+            else
+            {
+                <h4> Dagmail bestaat niet van vandaag</h4>
+                <form method="post">
+                    <button class="btn btn-dark">Maak een niewe dagmail aan</button>
+                </form>
+            }
+        </div>
+    </div>
+    <div class="card">
+        <img class="card-img-top" src="~/images/Card/ZiekenCard.jpg" alt="Card image cap">
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col"> </th>
+                        <th scope="col">Naam</th>
+                        <th scope="col">Duur</th>
+                    </tr>
+                </thead>
+                @foreach (var zieken in Model.HuidigZieken)
+                {
+                    if (zieken.BeterGemeld == false)
+                    {
+                        var days = (DateTime.Now - zieken.DagZiek);
+                        <tbody style="width:inherit">
+                            <tr>
+                                <th scope="row">@Model.NummerHuidigeZieken</th>
+                                <td>@zieken.FirstName @zieken.LastName</td>
+                                <td>@days.Days
+                                @if (days.Days == 1)
+                                { <p>dag</p> }
+                                else
+                                { <p> dagen </p>}
+	                            </td>
+                            </tr>
+                        </tbody>
+                        Model.NummerHuidigeZieken++;
+                    }
+                }
+            </table>
+            <a asp-page="./zieken/index" class="btn btn-secondary"> Ga naar zieken</a>
+        </div>
+    </div>
+    <div class="card">
+        <img class="card-img-top" src="~/Images//Card/ManagerCard.jpg" alt="Card image cap">
+        <div class="card-body">
+            @foreach (var manager in Model.Manager)
+            {
+                <a asp-page="./Manager/Details" asp-route-id="@manager.ID" class="btn btn-outline-primary" style="width: 88%;">@manager.FirstName</a>
+
+            }
+        </div>
+    </div>
+</div>

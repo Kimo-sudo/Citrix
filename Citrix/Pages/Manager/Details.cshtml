@@ -1,0 +1,43 @@
+﻿@page
+@model Citrix.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Manager</h1>
+
+<div>
+    <h4>Manager</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Manager.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Manager.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Manager.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Manager.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Manager.PhotoPath)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Manager.PhotoPath)
+        </dd>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Werkzaam)
+        </dd>
+        <dd class="col-sm-10">
+            @Html.DisplayNameFor(model => model.Werkzaam)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Manager.ID">Aanpassen</a> |
+    <a asp-page="./Index">Terug naar het overzicht</a>
+</div>

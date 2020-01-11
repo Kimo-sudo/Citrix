@@ -1,0 +1,11 @@
+﻿@page "/"
+
+@using Citrix.Client.Data
+@inject ManagerService Manager
+
+<h1>Hello, world!</h1>
+@foreach (var manager in Manager.Managers)
+{
+    <h1> @manager.FirstName   </h1>
+}
+Welcome to your new app.

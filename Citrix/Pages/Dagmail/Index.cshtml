@@ -1,0 +1,28 @@
+﻿@page
+@model Citrix.IndexDagmailModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1> @DateTime.Now.Year </h1>
+
+<h2> Januari </h2>
+@foreach (var date in Model.Dagdeels)
+{
+    if (date.DateAdded.Month == 1 && date.DateAdded.Year == 2020)
+    {
+        <a asp-page="/Dagmail/Details" asp-route-ID="@date.ID"
+           class="btn btn-primary m-1">@date.DateAdded.ToShortDateString()</a>
+
+    }
+}
+<h2> Februari </h2>
+@foreach (var date in Model.Dagdeels)
+{
+    if (date.DateAdded.Month == 2 && date.DateAdded.Year == 2020)
+    {
+        <a asp-page="/Dagmail/Details" asp-route-ID="@date.ID"
+           class="btn btn-primary m-1">@date.DateAdded.ToShortDateString()</a>
+
+    }
+}

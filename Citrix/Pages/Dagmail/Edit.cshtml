@@ -1,0 +1,64 @@
+﻿@page
+@model Citrix.EditDagmailModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Dagmail</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Dagdeels.DagDoelstelling" class="control-label">Doelstelling van de dag</label>
+                <input asp-for="Dagdeels.DagDoelstelling" class="form-control" />
+                <span asp-validation-for="Dagdeels.DagDoelstelling" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dagdeels.ResultaatDagDoelStelling" class="control-label">Resultaat doelstelling</label>
+                <input asp-for="Dagdeels.ResultaatDagDoelStelling" class="form-control" />
+                <span asp-validation-for="Dagdeels.ResultaatDagDoelStelling" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dagdeels.Sectie11" class="control-label">Sectie 11 resultaat</label>
+                <input asp-for="Dagdeels.Sectie11" class="form-control" />
+                <span asp-validation-for="Dagdeels.Sectie11" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dagdeels.Omzet" class="control-label">Omzet</label>
+                <input asp-for="Dagdeels.Omzet" class="form-control" />
+                <span asp-validation-for="Dagdeels.Omzet" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dagdeels.Personeel" class="control-label">Personeel</label>
+                <input asp-for="Dagdeels.Personeel  " class="form-control" />
+                <span asp-validation-for="Dagdeels.Personeel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dagdeels.Apperatuur" class="control-label">Apperatuur</label>
+                <input asp-for="Dagdeels.Apperatuur" class="form-control" />
+                <span asp-validation-for="Dagdeels.Apperatuur" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dagdeels.Overig" class="control-label">Overig</label>
+                <input asp-for="Dagdeels.Overig" class="form-control" />
+                <span asp-validation-for="Dagdeels.Overig" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dagdeels.DateAdded" class="control-label">Overig</label>
+                <input asp-for="Dagdeels.DateAdded" class="form-control" />
+                <span asp-validation-for="Dagdeels.DateAdded" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dagdeels.ID" class="control-label">Overig</label>
+                <input asp-for="Dagdeels.ID" class="form-control" />
+                <span asp-validation-for="Dagdeels.ID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Aanmaken" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+

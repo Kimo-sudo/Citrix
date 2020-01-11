@@ -1,0 +1,64 @@
+﻿@page
+@model Citrix.DagmailDetailsModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="card" style="width: 100%;">
+    <div class="card-header">
+        <h1 class="text-monospace" style="text-align: center"> Dagmail @Model.Dagdeels.DateAdded.ToShortDateString() </h1>
+    </div>
+    <div class="card-footer">
+        <h5 class="text-monospace" style="text-align: center">  </h5>
+        <h5 class="text-monospace" style="text-align: center"> </h5>
+    </div>
+    <!--
+            Cards 3 times -->
+    <div class="jumbotron">
+            <!-- 	Ochtend -->
+            <div class="card" style="min-width: 80%; height: 100%; text-indent:30px">
+                    <h5> <b> Doelstelling shift  </b> </h5>
+                    <p> @Model.Dagdeels.DagDoelstelling </p>
+                    <h5> <b> Resultaat shiftdoelstelling </b> </h5>
+                    <p> @Model.Dagdeels.ResultaatDagDoelStelling</p>
+
+                    <p> <b> Omzet </b> </p>
+              
+                    <p> @Model.Dagdeels.Omzet</p>
+
+
+                    <p> <b> Vooraadbeheer</b> </p>
+                
+                    <p> @Model.Dagdeels.Voorraadbeheer</p>
+
+
+                    <p> <b> Personeel </b> </p>
+                
+                    <p> @Model.Dagdeels.Personeel </p>
+
+
+                    <p> <b> Apperatuur </b> </p>
+                  
+                    <p> @Model.Dagdeels.Apperatuur  </p>       
+                    
+                    
+                    <p> <b> Overige </b> </p>
+               
+                    <p>  @Model.Dagdeels.Overig </p>
+                </div>
+                <div class="card-footer">
+                    <div>
+                        <a asp-page="./Edit" asp-route-id="@Model.Dagdeels.ID">Aanpassen</a> |
+                        <a asp-page="./Index">Terug naar het overzicht</a>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+ 
+
+
+

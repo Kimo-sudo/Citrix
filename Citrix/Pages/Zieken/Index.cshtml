@@ -1,0 +1,103 @@
+﻿@page
+@model Citrix.ZiekenIndexModel
+
+@{
+    ViewData["Title"] = "Ziekmelding ";
+}
+<style>
+    .btn {
+        width: 80px;
+        font-size: 10px;
+    }
+
+    .btn-dark {
+        width: 150px;
+        font-size: 20px;
+    }
+
+    .btn-primary {
+        width: 350px;
+        font-size: 20px;
+    }
+</style>
+
+<h1>Ziekmelding </h1>
+
+<form method="post">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6 col-md-4">
+                <label asp-for="ZiekToevoegen.FirstName" class="control-label">Voornaam</label>
+                <input asp-for="ZiekToevoegen.FirstName" class="form-control" />
+                <span asp-validation-for="ZiekToevoegen.FirstName" class="text-danger"></span>
+            </div>
+            <div class="col-6 col-md-4">
+                <label asp-for="ZiekToevoegen.LastName" class="control-label">Achternaam</label>
+                <input asp-for="ZiekToevoegen.LastName" class="form-control" />
+                <span asp-validation-for="ZiekToevoegen.LastName" class="text-danger"></span>
+            </div>
+            <div class="col-6 col-md-4">
+                <label asp-for="ZiekToevoegen.PhoneNumber" class="control-label">Telefoonnummer</label>
+                <input asp-for="ZiekToevoegen.PhoneNumber" class="form-control" />
+                <span asp-validation-for="ZiekToevoegen.PhoneNumber" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 col-md-4">
+                <label asp-for="ZiekToevoegen.Duur" class="control-label">Vermoedelijke duur in dagen</label>
+                <input asp-for="ZiekToevoegen.Duur" class="form-control" />
+                <span asp-validation-for="ZiekToevoegen.Duur" class="text-danger"></span>
+            </div>
+            <div class="col-6 col-md-4">
+                <label asp-for="ZiekToevoegen.DagZiek" class="control-label">Datum Ziekmelding</label>
+                <input asp-for="ZiekToevoegen.DagZiek" class="form-control" />
+                <span asp-validation-for="ZiekToevoegen.DagZiek" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-6 col-md-4">
+        </div>
+    </div>
+    <div class="row justify-content-center" style="margin-top: 1rem; margin-bottom: 1rem">
+        <div class="col-4">
+            <input type="submit" value="Ziekmelden" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+<div class="container-fluid">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col"> </th>
+                <th scope="col">Voornaam</th>
+                <th scope="col">Achternaam</th>
+                <th scope="col">Aantal dagen ziek </th>
+            </tr>
+        </thead>
+
+        @foreach (var ziek in Model.Zieken)
+
+            if (ziek.BeterGemeld == false)
+            {
+                var days = (DateTime.Now - ziek.DagZiek);
+
+                <tbody>
+                    <tr>
+                        <th scope="row">@Model.NummerHuidigeZieken</th>
+                        <td>@ziek.FirstName</td>
+                        <td>@ziek.LastName</td>
+                        <td>
+                            @days.Days
+                            @if (days.Days <= 1)
+                            {<p>dag</p> }
+                            else
+                            { <p> dagen </p>}
+                        </td>
+                        <td>
+                            <a asp-page="/Zieken/Details" asp-route-ID="@ziek.ID" class="btn btn-secondary">Bekijken</a>
+                        </td>
+                    </tr>
+                </tbody>
+                Model.NummerHuidigeZieken++;
+            }
+    </table>
+</div>

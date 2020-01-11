@@ -1,0 +1,53 @@
+﻿@page
+@model Citrix.CreateZiekenModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Ziekmelding invoeren</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ZiekModel.FirstName" class="control-label">Voornaam</label>
+                <input asp-for="ZiekModel.FirstName" class="form-control" />
+                <span asp-validation-for="ZiekModel.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ZiekModel.LastName" class="control-label">Achternaam</label>
+                <input asp-for="ZiekModel.LastName" class="form-control" />
+                <span asp-validation-for="ZiekModel.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ZiekModel.PhoneNumber" class="control-label">Telefoonnummer</label>
+                <input asp-for="ZiekModel.PhoneNumber" class="form-control" />
+                <span asp-validation-for="ZiekModel.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ZiekModel.Duur" class="control-label">
+                    Duur in dagen :
+                    <input asp-for="ZiekModel.Duur" class="form-control" />
+                    <span asp-validation-for="ZiekModel.Duur" class="text-danger"></span>
+                </label>
+            </div>
+            <!-- Selecting the manager from a dropwown-->
+            <select class="form-group">
+                @foreach (var managers in Model.Manager)
+                {
+
+                    <option value="@managers.ID"> @managers.FirstName </option>
+
+
+                }
+                </select>
+
+                <div class="form-group">
+                    <input type="submit" value="Aanmaken" class="btn btn-primary" style="margin-top: 40px;" />
+                </div>
+</form>
+    </div>
+</div>

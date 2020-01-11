@@ -1,0 +1,65 @@
+﻿@page
+@model Citrix.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="container-fluid">
+    <h3>Zwolle - Zuid </h3>
+</div>
+<hr>
+<div class="card-deck">
+    @foreach (var manager in Model.Manager)
+    {
+        if (manager.RestaurantModelId == 1)
+        {
+
+            var photoPath = "~/images/" + (@manager.PhotoPath ?? "onbekend.png");
+            <div class="card m-3" style="min-width: 20rem; max-width:30.5%;">
+                <div class="card-header">
+                    <h1> @manager.FirstName @manager.LastName</h1>
+                </div>
+                <img class="card-img-top imageThumbnail" src="@photoPath" asp-append-version="true" />
+                <div class="card-footer text-center">
+                    <a asp-page="/Manager/Details" asp-route-ID="@manager.ID"
+                       class="btn btn-primary m-1">Bekijken</a>
+                    <a asp-page="/Manager/Edit" asp-route-ID="@manager.ID"
+                       class="btn btn-secondary m-2">Aanpassen</a>
+                    <a asp-page="/Manager/Delete" asp-route-ID="@manager.ID" class="btn btn-danger m-2">Verwijderen</a>
+                </div>
+            </div>
+
+        }
+
+    }
+</div>
+<h3>Zwolle - Noord </h3>
+<hr>
+<div class="card-deck">
+    @foreach (var manager in Model.Manager)
+    {
+        if (manager.RestaurantModelId == 2)
+        {
+
+            var photoPath = "~/images/" + (@manager.PhotoPath ?? "onbekend.png");
+            <div class="card m-3" style="min-width: 20rem; max-width:30.5%;">
+                <div class="card-header">
+                    <h1> @manager.FirstName @manager.LastName</h1>
+                </div>
+                <img class="card-img-top imageThumbnail" src="@photoPath" asp-append-version="true" />
+                <div class="card-footer text-center">
+                    <a asp-page="/Manager/Details" asp-route-ID="@manager.ID"
+                       class="btn btn-primary m-1">Bekijken</a>
+                    <a asp-page="/Manager/Edit" asp-route-ID="@manager.ID"
+                       class="btn btn-secondary m-2">Aanpassen</a>
+                    <a asp-page="/Manager/Delete" asp-route-ID="@manager.ID" class="btn btn-danger m-2">Verwijderen</a>
+                </div>
+            </div>
+
+        }
+
+    }
+</div>
+
+<a href="/manager/create" class="btn btn-dark" style="align-self:end">Nieuwe Manager</a>
