@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BlazorCitrix.Data
 {
-    public class GetManagersService
+    public class GetManagersService : IGetManagersService
     {
         private readonly SqlDbContext _context;
 
@@ -20,6 +20,13 @@ namespace BlazorCitrix.Data
         public async Task<List<Manager>> GetManagersAsync()
         {
             return await _context.Manager.ToListAsync();
+        }
+
+        public async Task<List<Manager>> GetManagersOnRestAsync(int restaurant)
+        {
+
+            return await _context.Manager.Where(x => x.RestaurantModelId == restaurant).ToListAsync();
+
         }
     }
 }

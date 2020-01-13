@@ -1,0 +1,39 @@
+﻿@page "/Manager/"
+@using BlazorCitrix.Data
+@using Citrix.Models
+@inherits OwningComponentBase<GetManagersService>
+@using BlazorCitrix
+
+
+<h3>Managers</h3>
+
+@if (Managers == null)
+
+{
+    <p> Loading... </p>
+}
+else
+{
+    foreach (var manager in Managers)
+
+    {
+        <h1> @manager.FirstName</h1>
+    }
+}
+
+
+
+@code { 
+
+    List<Manager> Managers;
+
+
+    protected override async void OnInitialized()
+    {
+        Managers = await @Service.GetManagersAsync();
+
+
+        }
+
+
+}

@@ -1,0 +1,115 @@
+﻿@page
+@model Citrix.IndexKlachtenModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+
+    .btn {
+        width: 80px;
+        font-size: 10px;
+    }
+
+    .btn-dark {
+        width: 150px;
+        font-size: 20px;
+    }
+
+    .btn-primary {
+     
+        width: 350px;
+        font-size: 12px;
+    }
+</style>
+
+<h1>Klachten @DateTime.UtcNow.Year</h1>
+
+
+<form method="post">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6 col-md-4">
+                <label asp-for="Klacht.FirstName" class="control-label">Voornaam</label>
+                <input asp-for="Klacht.FirstName" class="form-control" />
+                <span asp-validation-for="Klacht.FirstName" class="text-danger"></span>
+            </div>
+            <div class="col-6 col-md-4">
+                <label asp-for="Klacht.LastName" class="control-label">Achternaam</label>
+                <input asp-for="Klacht.LastName" class="form-control" />
+                <span asp-validation-for="Klacht.LastName" class="text-danger"></span>
+            </div>
+            <div class="col-6 col-md-4">
+                <label asp-for="Klacht.PhoneNumber" class="control-label">Telefoonnummer</label>
+                <input asp-for="Klacht.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Klacht.PhoneNumber" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 col-md-4">
+                <label asp-for="Klacht.Streetname" class="control-label">Straatnaam</label>
+                <input asp-for="Klacht.Streetname" class="form-control" />
+                <span asp-validation-for="Klacht.Streetname" class="text-danger"></span>
+            </div>
+            <div class="col-6 col-md-2">
+                <label asp-for="Klacht.HuisNummer" class="control-label">Huisnummer</label>
+                <input  asp-for="Klacht.HuisNummer" class="form-control" />
+                <span asp-validation-for="Klacht.HuisNummer" class="text-danger"></span>
+            </div>
+            <div class="col-6 col-md-2">
+                <label asp-for="Klacht.PostCode" class="control-label">Postcode</label>
+                <input asp-for="Klacht.PostCode" class="form-control" />
+                <span asp-validation-for="Klacht.PostCode" class="text-danger"></span>
+            </div>
+            <div class="col-6 col-md-4">
+                <label asp-for="Klacht.DateKlacht" class="control-label">Datum van klacht</label>
+                <input asp-for="Klacht.DateKlacht" placeholder="@DateTime.Now" class="form-control" />
+                <span asp-validation-for="Klacht.DateKlacht" class="text-danger"></span>
+            </div>
+            <div class="row">
+
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center" style="margin-top: 1rem; margin-bottom: 1rem">
+        <div class="col-4">
+            <button type="submit" asp-page-handler="SubmitKlacht">Klacht opslaan</button>
+        </div>
+    </div>
+</form>
+
+<div class="container-fluid">
+    <form method="post">
+        <button asp-page-handler="Everything" disabled="@Model.stateEverything" style="max-height:50px; max-width:300px" type="submit" class="btn btn-primary float-right">Alle klachten weergeven</button>
+        <button asp-page-handler="HideEverything" disabled="@Model.HideEverything" style="max-height:50px; max-width:300px" type="submit" class="btn btn-primary float-right">Behandelde klachten verbergen</button>
+    </form>
+     <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Voornaam</th>
+                <th scope="col">Telefoon nummer</th>
+                <th scope="col">Adres </th>
+                <th scope="col">Behandeld</th>
+                <th scope="col">Datum klacht </th>
+            </tr>
+        </thead>
+        @foreach (var klacht in Model.KlachtModels)
+        {
+            <tbody>
+                <tr>
+                    <td>@klacht.FirstName</td>
+                    <td>@klacht.LastName</td>
+                    <td>@klacht.Streetname @klacht.HuisNummer @klacht.PostCode</td>
+                    <td><input class="custom-checkbox" type="checkbox" checked="@klacht.Behandeld" disabled/></td>
+                    <td>@klacht.DateKlacht.Day-@klacht.DateKlacht.Month-@klacht.DateKlacht.Year</td>
+                    <td>
+                        <a asp-page="/Klachten/Details" asp-route-ID="@klacht.Id" class="btn btn-secondary">Bekijken</a>
+    </td>
+    </tr>
+    </tbody>
+    }
+
+
+    </table>
+</div>

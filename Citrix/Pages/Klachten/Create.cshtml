@@ -1,0 +1,84 @@
+﻿@page
+@model Citrix.CreateKlachtenModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>KlachtModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Klacht.FirstName" class="control-label"></label>
+                <input asp-for="Klacht.FirstName" class="form-control" />
+                <span asp-validation-for="Klacht.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Klacht.LastName" class="control-label"></label>
+                <input asp-for="Klacht.LastName" class="form-control" />
+                <span asp-validation-for="Klacht.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Klacht.PhoneNumber" class="control-label"></label>
+                <input asp-for="Klacht.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Klacht.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Klacht.Streetname" class="control-label"></label>
+                <input asp-for="Klacht.Streetname" class="form-control" />
+                <span asp-validation-for="Klacht.Streetname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Klacht.HuisNummer" class="control-label"></label>
+                <input asp-for="Klacht.HuisNummer" class="form-control" />
+                <span asp-validation-for="Klacht.HuisNummer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Klacht.PostCode" class="control-label"></label>
+                <input asp-for="Klacht.PostCode" class="form-control" />
+                <span asp-validation-for="Klacht.PostCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Klacht.KlachtDescription" class="control-label"></label>
+                <input asp-for="Klacht.KlachtDescription" class="form-control" />
+                <span asp-validation-for="Klacht.KlachtDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Klacht.Toegezegd" class="control-label"></label>
+                <input asp-for="Klacht.Toegezegd" class="form-control" />
+                <span asp-validation-for="Klacht.Toegezegd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Klacht.DateAdded" class="control-label"></label>
+                <input asp-for="Klacht.DateAdded" class="form-control" placeholder="@DateTime.UtcNow" />
+                <span asp-validation-for="Klacht.DateAdded" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Klacht.DateKlacht" class="control-label"></label>
+                <input asp-for="Klacht.DateKlacht" class="form-control" />
+                <span asp-validation-for="Klacht.DateKlacht" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Klacht.Behandeld" class="control-label"></label>
+                <input asp-for="Klacht.Behandeld" class="form-control" />
+                <span asp-validation-for="Klacht.Behandeld" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

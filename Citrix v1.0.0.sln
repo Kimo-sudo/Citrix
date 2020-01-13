@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Citrix.DesktopUI", "Citrix.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Citrix.APICalling", "Citrix.APICalling\Citrix.APICalling.csproj", "{9739296D-B1B0-4199-AA03-D41A78510CCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorCitrix", "BlazorCitrix\BlazorCitrix.csproj", "{BC5DFFFA-8102-44E7-9A95-3A9E0AA298F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorCitrix", "BlazorCitrix\BlazorCitrix.csproj", "{BC5DFFFA-8102-44E7-9A95-3A9E0AA298F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

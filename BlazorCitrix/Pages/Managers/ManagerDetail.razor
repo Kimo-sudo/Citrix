@@ -1,0 +1,41 @@
+﻿@page "/test/"
+@using BlazorCitrix.Data.Base
+@using Citrix.Models
+@using Microsoft.EntityFrameworkCore
+
+@inject SqlDbContext  _context
+
+<h3>ManagerDetail</h3>
+
+@if (Managers == null)
+{
+    <p> loading </p>
+}
+else
+{
+
+    foreach (var manager in Managers)
+    {
+        <p>@manager.FirstName </p>
+    }
+}
+<EditForm Model="@man" OnValidSubmit="@InsertPerson">
+    <InputText id="firstName" @bind-Value="man.FirstName" />
+    <button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
+
+@code {
+    List<Manager> Managers = new List<Manager>();
+    Manager man = new Manager();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Managers = await _context.Manager.ToListAsync();
+    }
+    private async void InsertPerson()
+    {
+        man.RestaurantModelId = 2;
+        await _context.Manager.AddAsync(man, new System.Threading.CancellationToken { });
+        await _context.SaveChangesAsync();
+    }
+}

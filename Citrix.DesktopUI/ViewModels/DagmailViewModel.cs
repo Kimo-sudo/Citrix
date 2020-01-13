@@ -9,18 +9,6 @@ namespace Citrix.DesktopUI.ViewModels
 {
     public class DagmailViewModel : Screen
     {
-
-        private readonly ApplicationDbContext _context;
-
-        public DagmailViewModel(ApplicationDbContext context)
-        {
-            _context = context;
-        }
-
-        public IList<Dagdeel> Dagdeels { get; set; }
-
-
-
         public class GetDagmail
         {
            

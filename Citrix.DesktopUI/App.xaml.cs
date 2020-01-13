@@ -20,12 +20,6 @@ namespace Citrix.DesktopUI
 
         protected override void OnStartup(StartupEventArgs e)
         {
-
-            new DagmailService().GetDagmail(Models.Models.DagmailOmzet.Hoog).ContinueWith((task) =>
-            {
-                var result = task.Result;
-
-            });
             base.OnStartup(e);
         }
     }

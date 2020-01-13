@@ -4,14 +4,16 @@ using Citrix.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Citrix.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200113134713_initKlacht")]
+    partial class initKlacht
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,15 +110,6 @@ namespace Citrix.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("Behandeld")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("DateAdded")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateKlacht")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
@@ -130,12 +123,10 @@ namespace Citrix.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PhoneNumber")
-                        .HasColumnType("int")
-                        .HasMaxLength(12);
+                        .HasColumnType("int");
 
                     b.Property<string>("PostCode")
-                        .HasColumnType("nvarchar(7)")
-                        .HasMaxLength(7);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Streetname")
                         .HasColumnType("nvarchar(max)");

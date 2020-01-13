@@ -2,42 +2,45 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Citrix.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Citrix.Data;
+using Citrix.Models.Models.Klachten;
 
 namespace Citrix
 {
-    [Authorize(Roles = "Admin")]
-    public class EditDagmailModel : PageModel
+    public class EditKlachtenModel : PageModel
     {
-        private readonly Citrix.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public EditDagmailModel(Citrix.Data.ApplicationDbContext context)
+        public EditKlachtenModel(ApplicationDbContext context)
         {
             _context = context;
         }
 
         [BindProperty]
-        public Dagdeel Dagdeels { get; set; }
+        public KlachtModel KlachtModel { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? ID)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (ID == null)
+            if (id == null)
             {
                 return NotFound();
             }
-            Dagdeels = await _context.Dagdeel.FirstOrDefaultAsync(m => m.ID == ID);
 
-            if (Dagdeels == null)
+            KlachtModel = await _context.Klacht.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (KlachtModel == null)
             {
                 return NotFound();
             }
             return Page();
         }
 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
+        // more details see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -45,7 +48,7 @@ namespace Citrix
                 return Page();
             }
 
-            _context.Attach(Dagdeels).State = EntityState.Modified;
+            _context.Attach(KlachtModel).State = EntityState.Modified;
 
             try
             {
@@ -53,7 +56,7 @@ namespace Citrix
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!DagdeelExisits(Dagdeels.ID))
+                if (!KlachtModelExists(KlachtModel.Id))
                 {
                     return NotFound();
                 }
@@ -63,12 +66,12 @@ namespace Citrix
                 }
             }
 
-            return RedirectToPage("./Details", new { id = Dagdeels.ID }) ;
+            return RedirectToPage("./Index");
         }
 
-        private bool DagdeelExisits(int id)
+        private bool KlachtModelExists(int id)
         {
-            return _context.Dagdeel.Any(e => e.ID == id);
+            return _context.Klacht.Any(e => e.Id == id);
         }
     }
 }

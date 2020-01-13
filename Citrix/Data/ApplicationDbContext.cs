@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Citrix.Models;
 using Microsoft.AspNetCore.Authorization;
 using Citrix.Models.Models.Restaurant;
+using Citrix.Models.Models.Klachten;
 
 namespace Citrix.Data
 {
@@ -14,6 +15,8 @@ namespace Citrix.Data
         public DbSet<Manager> Manager { get; set; }
         public DbSet<ZiekModel> ZiekModel { get; set; }
         public DbSet<Dagdeel> Dagdeel { get; set; }
+
+        public DbSet<KlachtModel> Klacht { get; set; }
 
         public DbSet<RestaurantModel> Restaurant { get; set; }
 

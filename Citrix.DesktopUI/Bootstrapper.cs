@@ -23,7 +23,10 @@ namespace Citrix.DesktopUI
 
             _container
                 .Singleton<IWindowManager, WindowManager>()
-                .Singleton<IEventAggregator, EventAggregator>();
+                .Singleton<IEventAggregator, EventAggregator>()
+                .Singleton<INavigationService>()
+                ;
+
 
 
             GetType().Assembly.GetTypes()
@@ -37,6 +40,7 @@ namespace Citrix.DesktopUI
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
             DisplayRootViewFor<ShellViewModel>();
+            
         }
 
         protected override object GetInstance(Type service, string key)
