@@ -24,7 +24,7 @@ namespace Citrix
         [BindProperty]
         public KlachtModel Klacht { get; set; }
 
-        public bool stateEverything = false;
+        public bool ShowEverything = false;
         public bool HideEverything = false;
 
         public async Task OnGetAsync()
@@ -35,12 +35,12 @@ namespace Citrix
                 .ToListAsync();
         }
 
-        public async Task OnPostEverythingAsync()
+        public async Task OnPostShowEverythingAsync()
         {
             KlachtModels = await _context.Klacht
                 .Where(x => x.DateKlacht.Year == DateTime.UtcNow.Year)
                 .ToListAsync();
-            stateEverything = true;
+            ShowEverything = true;
         }
         public async Task OnPostHideEverythingAsync()
         {
@@ -55,6 +55,7 @@ namespace Citrix
         {
             if (!ModelState.IsValid)
             {
+                await OnGetAsync();
                 return Page();
             }
             Klacht.DateAdded = DateTime.Now;
@@ -63,7 +64,10 @@ namespace Citrix
             _context.Klacht.Add(Klacht);
             await _context.SaveChangesAsync();
             Klacht = new KlachtModel();
+
+
             return RedirectToPage("./Index");
+
         }
     }
 }

@@ -1,0 +1,187 @@
+﻿@page
+@model Citrix.KlachtenBriefModel
+@{
+    ViewData["Title"] = "KlachtenBrief";
+}
+
+<link href="https://fonts.googleapis.com/css?family=Tinos" rel="stylesheet" type="text/css">
+    <style>
+        *, *:before, *:after {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .page {
+            page-break-after: always;
+            position: relative;
+            width: 8.5in;
+            height: 11in;
+        }
+
+        .page-content {
+            position: absolute;
+            width: 8.125in;
+            height: 10.625in;
+            left: 0.1875in;
+            top: 0.1875in;
+            background-color: rgba(0,0,0,0);
+        }
+
+        .text {
+            margin-left: 55px;
+            margin-right: 55px;
+            margin-top: 300px;
+            font-family: 'Tinos';
+            font-size: 10pt;
+            line-height: 14pt;
+        }
+
+        .red-text {
+            color: red;
+        }
+
+        .date {
+            float: right;
+        }
+
+        #return-address-window {
+            position: absolute;
+            left: .625in;
+            top: .5in;
+            width: 3.25in;
+            height: .875in;
+            background-color: rgba(255,0,0,0);
+        }
+
+        #return-address-text {
+            position: absolute;
+            left: .07in;
+            top: .34in;
+            width: 2.05in;
+            height: .44in;
+            font-size: .11in;
+        }
+
+ 
+        #main-logo {
+            position: absolute;
+            left: 542px;
+            top: 23px;
+            width: 2in;
+            height: .3in;
+        }
+
+        #recipient-address-window {
+            position: absolute;
+            left: .625in;
+            top: 1.7in;
+            width: 4in;
+            height: 1in;
+            background-color: rgba(255,0,0,0);
+        }
+
+        #recipient-address-text {
+            position: absolute;
+            left: .07in;
+            top: .05in;
+            width: 2.92in;
+            height: .9in;
+        }
+
+        #white-box {
+            background-color: white;
+            width: 3.15in;
+            height: 2in;
+            position: absolute;
+            left: .6in;
+            top: .84in;
+        }
+    </style>
+
+
+    <div class="container-fluid">
+        <div class="page">
+            <div class="page-content">
+                <div id="main-logo"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQIAAADDCAMAAABeUu/HAAAAwFBMVEXVKx79yC/////+yi/UJh7+zDDTIB3/zjDdVSL2ryzqhCfVKRvTEgDSAADUIRDTHh3XMR/76unaQSD7wC7zxcLWJBDtrajieHP0zsv43Nv5uS31qyzcXlj8xC/XMSTSEw/zpCv55OLYPjL+9/bdWE74tS3xnCrcTSHjaSTsjCjlcyXvlinhbWXneSbhYiP88O/roJvZRDrnkYzriCjkg33zycbqpqLienXmjYfgWyLeUSLXOCzutbLol5LeXVXZQzlzszakAAAU5klEQVR4nO1d6ULyvBIuNBQxpS1oWRQ4srijiLuCev93ddImKc0k6SaLfr7zRyklnTyZzJZJapQZdZ+nXwPjj9Dga9rq8p4b9E+nh20H75qz7RF2bNzrxCG4d/5S/ylhx3kdRxB82n8OgICw/ckh+LR3zcyuyP4chxC8/lkECAavAQSdv6cGVoSdDoGg5+yaj12S0ysb3b8sBEQMcNd4/sOaICC7ZUz/9DwgM2FqfP3peUBmwpfxZ+ICHf15ANZGyHVdC6F1tGQFTa2hoa2S5Xq3D9fXDxdN1/0WCihoaf/6+vLC+1UoWOiqVq2EVD24bBYHAbnN/VPe0umN91tAQOjitGKWGJnV/vW5W6wly7s8iLVUObjx1jGxNk7IOzEjtikIBzeFhs+6PaqILVWOz3+BILjvB5USILN6nV8vImtfBCCgSumioERtj9yrksR3wPppMycGyDipKhoyqw8/fC64D0oECAZH+TBARk0SJtbS9aaYXwtZN7LsRhjkUWVEoWgQIC2d/eC54N6oZJdzXjOyY2BdJ7RUvf6xGLg32pGjo5cZAvcyAQGCwcMPtQvWbV83CxgG+xlHz7rQaBRO5s2PlAPUPEjmm3RrL5McIC8Fy5LZf/uJcoB0KjzG+UGmwUN6VbhqKYdi2RZZydOXUuUyw+AlKtWopeMfB4F1AWXXNCumfC19KqBzaUKpmqrs/7CpICuCSql2ctqHbkLlOLUp9wxOg0r/6OS4D66a/WyKZWvkgulrVs+arus2LyUMrlIGD71JInB2TpryYFOV2o8SA+uiCti+CJMEyD0/BdgceMlNuaegpwdvrKk3YCcqlz/IMsJpYJaisUbNYxGDykMi4xKYB03elLXXB6Hz+c+ZCta1vpvIA/D0E5vyauDu95W4Q5WbQbFsi9Ce6MxVTuIDbb2L2jxRlUtCcBVvygVQV69+ylRA4nwnsisIKAgd4NciiZqgAgOiWo6mtkgwOqpKSl9UBwmhAhB1EyYZLGAuJIh2RAhoqRocGbQHOqY1Cq4IlgwmEqeC2f8RGtHaB2bvTeLKEr0drW8AsTqVxhh5ZoLa2RGhZj+VKdSspnSNEnAMzQsZKvcBzLr33YuBBUVTFgLZ6VXdQ8hLEwIF4rs3jOgcCoFKyIHZrFwrZwKYUur54l4CH+R212IAx7eiHmBRz5kl5U2iW6TRmhLmu46aIUOmRi6tixRVH7S1J2gMne2E/lFFoTG2SVAIqjp+vCNhJqiQEvtmljRuD3qHEeNOjQJqwjhQJ5XiFDZLsj1HTRGlE62Ag8CrtFNtIMVH2sQYehekvCrHi9ZV+lyhN4I4onK8QzGAFkorvIas66QbgGdY0c9wCyQOqjt0EaGfkjQelnCv7D6AzHmS2yfJXvY1mnUTmL3JWTHgIUozAcyDxKbexMeqNMuWyLqByjApdnUPxJkAITgRpSSxKQj9zgJGC3KSuOQL3DopnS5+m6jipMhsV3kDdFsSqZponcDtwHgANV9JLM1B7zCTWqyS59skJc71eYCQxCSiKebAxXg6bZEA1YA2ONoJBMgD616Vs2Q+YD5EAEz0Hs3TZDShFiJx9S5mggVCtlJVEwJHPxDXCgWdD+ODFP2GmmD1fTepEw8oQ7OfMhAkYha5jt0PPAxtqBHRMVilqu5AIUI3NXUeENBORbMY4xqBzHFah6wHKII7KDxxYbCSuloI9Wds4oDVZLOWsuoGHa107bEBkuySWUrlASix2JogdA3VWaU4Qe8oxSJvgmD+KsWZCQlEizGzCNIg6QIlxQmajN0myZLqCTKUPADPYOXTic5zFt2GLsTHk9a2HChInmG2igdRGVS4MQc2zixlsHBSSda2PUSpFMQ8zfAr4EpEygAqiSxGXlLH2tWJDRGChYGZqmKRmESNmAYTO6UEgf1GrvPc6qqK5BRkcGYMeVWJGxEkqnfVKpLc1ps0ClnK2dZGUmVgUsosRq7ItskMmRhtZFwr9UBFTtaqxvUQzBnq1w8AuaJfy8YN3YoQHGQaTbkyrbrFGjRLKo7MmLcB3gQLE6BXkC0jbF3JTGxvJlgwSMnqm1mw4IReBrKRRRsGTjWUgi06yYr60GrGX4LCudAHgvVqmTSroVAGqeH6+ki2R5ltMig/Cz1hkCsoZaxXh4UbpW3uV3FrEP7MsxBEN6EKATGSVGCkI/C7Unrqbm0kpWyC2risEIjWNDQkQBuatcx8yBXrWwoXFfMgMesfJ5AdIiNO2gPpksw5MFcaim3V5FrSjonsTom0JPqO4JpU9m7AFPb2vCNPcs6zqyH0JtUjSFYic8kEXFEpKRZoNkJyfJAjToX2lAw51GrZa8ikiH1bcYJsi7QVZAoCxtw8duHytJk9Fyxv4zJPtwEBXE7OYcYMybE0jyQjkcOwSQnE7STT0Zs0D8wc+0NgdeVB04VVe9l5gZVXpe3kjqS8ab61bcmi3nqgkj91OSLWmOQcJZUorY2Q5JkTHZ79sSAwJi4yLCDLsfMMrE8xsdo0BmhP3kmaZ4MMOgcQPICRrOTBU9ZLW1hPUKTs8nnmTViWsV/UJhryIntpGxUnskeWS4FJq7HmEdxskwdPOXOULZX9LUKKeZAPd5huAbqlmqcxhT40+xtOJEsbKUt5PNqwBWkFQvwEy7CSG3uXg8VNm0VpUbuU1xuRFgMBILlKSeU87uarLeSsIXlmrkcqYhuhsXyzypP1odnfrBTIUWLehSywoiRBkK9UQhWwZE28FSPo2BQYNznxK7aWbyZb+wqGNlpwonDKcx8koBCkOOXzbBQRy6Z9ZIUqKOWsd3OTIMht0mDlXyl1V/T3SKWAs+cNGblJZ7XkdvHl/OFmi/NVqkC/EUVDcgpeaC0nS67KRGU9PKgAKQLl/JUNChc71louz8jQaKcNKgNLDpTzr+ComF5BkHevlcrNyJPFyknKw5uqeU+WgbnC7wEqlV2FrWzMM0C3ilmcJ18SkiLcjjGfdy0EbpSkrWwsTFD5IfnP1lFEdzFAc59W5Ckkc3NhgkqR5Z93iux/jPmsi5MrpuTEkWr/25pIZYMzL4JGpBTdSApyp70UWRNiWjeUM4A7ZQvKXOKJeIrzH1JIGXnmF6aMD1PpsYxVMQLpIShQRatY39vcCrMy2ZEvZRSSavZyCPJbdLhpkbazoa3cinRtoYM04BFecdbzF0wpCp+0ByR8mzwV5zkWQTmp3Ppo9PJXyshVV0FDG9GHqlRloeoelQ6PIMjPuVI4N+McKbWheVwAAkWwFTWXn3Nl2LWZKkzl4BXZNJ6QQC3i1iljjiLilE6KZG2x5auEIKFQcyqrWErfKZWf1B5NkTmn4TlsroCXIVVuhrSJzBHaU41dkZJXVe7pG4iqyg834x+qA7widS3orWpqSH+ASQJ5/YqipQ0sMKuTPdUC4obOazo6LVJH7Z2pmtrAKwTUPp0Zwzr7K7c8LRVirUBThV4PBndpUwRo7tThxNrnH/UPim4JybfX+tI2LHADL2PKb34Q0LvSIIR23F42KB2Gb+Bz2uxjd6J7TvSLgIbdp1bbX+OrXB32ePF9gM50Flyd3dl2l/x9yv22QPnA7xCCUOnUG+ztxLPw/XP2kr+tePVGPozJUPsR9PZhGdD4eeHHHhfeH/sBuRBSOJbxlsLvHHYzvYh9xk0dQEAvt2x7Rv7c5YdA6dKFqT5szHhH2k4ckfIj6xX2B58vH3f37YnvaCAolxvTFQY+nrQ/7j4eewsuHHNK2F70Hu9JS/NIarA96r28Bq1/DsKLHIIGhwAHAOEVBM6MD08ItM2xSyG1QQjtOJ6MeTeCd1HiUTn+MWThkb3GevzUC7lUQUAQs3mn+P3l4bMRsjrojGez2bi7+BiylpYDiqY/Xw55A9274KIIAfb9yetz635iRxAMZlRgHX/R/nhu3T1OcJZpqMlzBKk+5yXqxJA81X+NPnaobviK3uNNaBk8TQ0Bmzji/eNpAOuAXpoNV1/MJsHd9ovQwpiIkgAB9jlo3TsOwYhA0PFx/WX1nMNJ+rywVK/uoOvA9t2KhQU2/FX3GkG7eNQoxynQQxEES0JPUb9mfqCuJ+L9wQuPOQQCNcjDnE949dOJQyDCySCYlANV4C+Fyx9pGKCmSgboqrIda+vRx3jVg9koGPEO4OHDX0HgkaloDyK5ufODd7uC+8c9RwlB0JDzxJ405E/t4BgEGA+lX7XsxXTaHtkf7C72w3Ha21SVC0lsHTjeRyLmc4H5SBGXl3eM3TFRahyCUai/7Ef2cUj+Z6yVD5+XTMd062oIDm38RW/pjOr2I/13PIlB4LfkX7XswEHgsjm1/TZnPWUeKA0C3QdTH6/aH/pRFwIiQuFQgGaTul1nPSWWWYCANMF7OHFs1pPPOpEPdnnqrCA4XEaIEwhGzwG1iFrAdXa950QQ4Am7s9H64HgSCEKFQ0emY2PMHt6oJwGgK5ULnUMOOuuTIPd3NucifIO5vxx2u93hoQ8h8O85ZnaP/nMf3O/Mx2yAOASzHrFvXK6IJ4aDiWQHaNXnDQkCPhydAbmBf88goGM/ntuOM1iElGIU1C+xCZ1D3kmqEV4X4ZM6DcY7nweh04SNxWBAHmhACKLZ8lx/pl2d49gc6/ocgsBuYvs5giD4tPh8vGstO9w5iUPAfkVtx6sAAXvibNn+/MKBa5BqFpVBUrhi4VDxHtM2D+koPtN5362z8e0OmOdGfTwJgh4T02X9kHU6vM6MzZhPhEaIpNNbQeAPWkDjxScCHQj6BvmVaxQyMlr9bNZdTtKjFGUCnTqHzCA0qPnpUgXUY3qozjrREUGWpYBB0Koz7Khu4j4Gh2BI1eckgiCaFEoIRlwW4+PeYk2LDkX3M0UbqjMzNDXD/IAhg4L2pc5m4SIbBD43Cfd2Lgi4PIy7h0suDTEIvmZ6CAy/LYhPmlFUlfeVaHkFNih33Xp71V6HK/8em4FDOhGwZiJErsWUfTOkkLFZP9NC0GHsB/pQtghJUkAwWEzvOrPInM2SxUBTFhGcR45HHOqYZfjgDvk91/ChesODr9Fo9PUFIXBGjJEx91jGNM5m9qpjqyGoMxVyGDrdXQkC5hipdIERpinsOv784Ho0WQzUqx9hhQnn58OPjDtxifw5B4aNRKuOiflkArPyCxY+YcU2uEge+tyzWgb3cyCfdRA8RjdH9woWgQnGJFCuPJqgEAym7YAm2LFtZi2Tw2d1oVy4FM7BbTurWKFBxJi2++RwGf/A9cUyupVD0J5Opy/PkTASWbEZHHcecQDYF3PNROAQjNuj+T1vJAYBVyXdOZkovbhfgAd0iJ4C14ix9eonQaAsvKVL4T5TfJ9OZNwDVc16QjzeBbs47DIeOgbWRIoBdw7XjI1hJBs21kAQPbERpSyEicBcK2L9755E75AjPcX4i/GlzXGFpFy9pUvhrDfE8V+lTl4cg2l2EjoKHnP4KEcTLD/5ylwCCe01ENgDOQqKQ2D4z/L3DAL+TbfDsBkmzgNNbUxYZ2SvmOPMB7qMP4L8WxdjlamtyRe0fGY1nkQEggBAA4Efs0LMHAsQYFsOr7hrBELy8WeiNlRWGdG1S7ygA9ElQsCte/z/IJVmP67EtNuzVSNNejf1mSBifBcLvDoLZ5UyaQgQPNmr4KI8a0OjGOQOsbN60jAOAYk/BHS6n8maQOMWBPuI8ITpFX+VQQunNJumoZr153eN8bg8nnUfabpLhGA8nh22BysWsD1pNYKmgusOtabLTkDLMJbB8/BD5478xJ52w5aX8/ozvTrBmP5DQwhn+kRs/3g8vP+kl7nWc4xH4hUENGscto0UB1mzEBpESXgUGpeXXjiE05fg/8CRx4uX2HUS0M2n097IZiONe+G3jHpz3xbz+uH97SkJndl1GhHatvAp7IsTtBwm/1a3sP9YV+1Bb9ojNsGJ/SpshTx10ptOP4Pv0oIk+TQrCkGQQsfxVZPY/8J19jn6YP1PINdiFEchuD9TZpfciS01KR4t/jTzUzR1IUWWwkPy9tX0ULAoAJ0/KNu7KtacijRbCKpFC3q8fkVF1aLnL6DbqrK9NR74pSmTK7yGryqdDhssKgVvyiEyT5vF2lM9Qr2IkLsOn5NyifY7EMjnGIQQrPEsAw3LhY8KUDubBIKC/EmHMjMI1veePV3hdOEjFrUQFGxPWYFa0r7Ka41PKFzStHYIFKdZhAyu7UQLeP5U9ITCU23NECgOGqLtra3mCilrCzYBQVGONWJV2GpLpNtNVKAEm5Fmt2a+YwBipIEA+G4IFZ4XmnJRs1/Y7K4bAk2D8WJWZHlvt+fIKoaCamdaAEHau8Pzcrx+CFa7Ht2r4+Oz67PaWbPQ3NBsrvzGMZvrhgCptzisTgVBZ9dNy3Vd4+K40OupNVtsv3HmrmZTRmEIVOeLlOL7qc/2jfOAPLd5XMRSavZQFNlCwmjdEEjH5DMO2SZw6+LE3SNRWLV6cOM2i5wHqAkUfxIEGg7Zlk2v5ll7pcvz89vT6q27n3tHrHYzUcZz0FWkgSDXsU4ChzoIwkFCb2cu2jP3XeReVPddrwDfmlh5/RAUlwLNVKU2y7rat0gw+WB4zZPKHnKLbCbSuJ8nBRmW347KqTAEGoVNo2Xr5oZA0D84Ouofk8jOPcnvz7iaOOykIMMEgqqaNgQBlYLjh8tacJSgW0CHqbZrl751XkZTQ0Ub1CQ32f5f9H5CdYHr1cym1SzAt6uZud84MgSpqWhzOghYzgSdvFt7wflL7mX1wr0ukOzSQbC7t7pC0uz74+dLoLeae358hUjMW7t9L7KfGf12CIhCPEFu4A1Y7ttpken2GyBQB3LRq4ytm+MrEiQY55cnxVJdvx8Cwzq/PD4hdOUVY/rXQhA7qRy5qNn03KIrH6YmGt/Na20VpEvqgHPzig+ZpxSCkvmDpEC3DXptKeQ9Na1vuerb1NSwuLZFRY0j82OEwFi7r/WP/tE/+kf/6B/9I06DXTOwaxoYo/WdJfArCX8ZaXtX/+vkTI3n3Mcb/LfIbhndbJWv/1XCuGuUe396Jji9ssH2dP1RCnaaG2zX9B8l+74cQFDu/VkMwp2VRri/ZY0HDf0iwnRvaQhB+b7ICVC/nLDj0M1OBtsY1cPpG1b+Q4QdG0/ZHi8j2rbVms7/TLwwmE9b0aa1/wPD8NKM5cLYRQAAAABJRU5ErkJggg==" width="240px"></div>
+                <div class="text">
+                    <span class="date">@DateTime.Now.ToShortDateString()</span><br>
+
+                    Dear @Model.Klacht.FirstName,<br><br>
+                    Ecstatic advanced and procured civility not absolute put continue.
+                    Overcame breeding or my concerns removing desirous so absolute.
+                    My melancholy unpleasing imprudence considered in advantages so impression.
+                    Almost unable put piqued talked likely houses her met. Met any nor may through resolve entered.
+                    An mr cause tried oh do shade happy.
+
+                    Unpacked now declared put you confined daughter improved.
+                    Celebrated imprudence few interested especially reasonable off one.
+                    Wonder bed elinor family secure met. It want gave west into high no in.
+                    Depend repair met before man admire see and. An he observe be it covered delight hastily message.
+                    Margaret no ladyship endeavor ye to settling.
+                    <br><br>
+
+                    Looking started he up perhaps against. How remainder all additions get elsewhere resources. O
+                    ne missed shy wishes supply design answer formed. Prevent on present hastily passage an subject in be.
+                    Be happiness arranging so newspaper defective affection ye.
+                    Families blessing he in to no daughter. <br><br>
+
+                    You have a right to obtain a free credit report from Acme if you request it no
+                    later than 60 days after receiving this notice. You also may dispute the report
+                    if you believe that it is inaccurate or incomplete. Acme's contact information
+                    is:<br><br>
+
+                    Acme<br>
+                    @Model.Klacht.HuisNummer ,  @Model.Klacht.Streetname
+                    <br>
+                    @Model.Klacht.PostCode<br>
+                    @Model.Klacht.PhoneNumber<br><br>
+
+                    Again, thank you for your interest. If you have any questions regarding this
+                    letter, please write to the following address:<br><br>
+
+
+                    Heerde, Kampen & Zwolle<br>
+                    Grote Markt 12<br>
+                    8011 LW, ZWOLLE<br>
+                    038-4211388<br><br>
+
+                    <b>Let Op:</b><br>
+                    Affronting everything discretion men now own did.
+                    Still round match we to. Frankness pronounce daughters remainder extensive has but.
+                    Happiness cordially one determine concluded fat. Plenty season beyond by hardly giving of.
+                    Consulted or acuteness dejection an smallness if. Outward general passage another as it.
+                    Very his are come man walk one next. Delighted prevailed supported too not remainder perpetual who furnished.
+                    Nay affronting bed projection compliment instrument.
+                    <br><br>
+
+                    Sincerely,<br><br>
+                    Sarah Sandifer<br>
+                    Infinity Credit Union
+                </div>
+
+                <!-- This div represents a white box which will be printed on top of all artwork to hold address and barcode information. Any content provided underneath this area will be covered. -->
+                <div id="white-box"></div>
+
+                <div id="return-address-window">
+                    <div id="return-address-text">
+                        <!-- The Return Address will be printed here. -->
+                    </div>
+                </div>
+                <div id="recipient-address-window">
+                    <div id="recipient-address-text">
+                        Acme<br>
+                        @Model.Klacht.HuisNummer ,  @Model.Klacht.Streetname
+                        <br>
+                        @Model.Klacht.PostCode<br>
+                        @Model.Klacht.PhoneNumber<br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+

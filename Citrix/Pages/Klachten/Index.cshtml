@@ -81,7 +81,7 @@
 
 <div class="container-fluid">
     <form method="post">
-        <button asp-page-handler="Everything" disabled="@Model.stateEverything" style="max-height:50px; max-width:300px" type="submit" class="btn btn-primary float-right">Alle klachten weergeven</button>
+        <button asp-page-handler="ShowEverything" disabled="@Model.ShowEverything" style="max-height:50px; max-width:300px" type="submit" class="btn btn-primary float-right">Alle klachten weergeven</button>
         <button asp-page-handler="HideEverything" disabled="@Model.HideEverything" style="max-height:50px; max-width:300px" type="submit" class="btn btn-primary float-right">Behandelde klachten verbergen</button>
     </form>
      <table class="table">
@@ -92,6 +92,7 @@
                 <th scope="col">Adres </th>
                 <th scope="col">Behandeld</th>
                 <th scope="col">Datum klacht </th>
+                <th scope="col">Aantal klachten(adres)</th>
             </tr>
         </thead>
         @foreach (var klacht in Model.KlachtModels)
@@ -101,12 +102,15 @@
                     <td>@klacht.FirstName</td>
                     <td>@klacht.LastName</td>
                     <td>@klacht.Streetname @klacht.HuisNummer @klacht.PostCode</td>
-                    <td><input class="custom-checkbox" type="checkbox" checked="@klacht.Behandeld" disabled/></td>
+                    <td><input class="custom-checkbox" type="checkbox" checked="@klacht.Behandeld" disabled /></td>
                     <td>@klacht.DateKlacht.Day-@klacht.DateKlacht.Month-@klacht.DateKlacht.Year</td>
+                    <td>@Model.KlachtModels.Where(x => x.Streetname == klacht.Streetname).Count()</td>
                     <td>
-                        <a asp-page="/Klachten/Details" asp-route-ID="@klacht.Id" class="btn btn-secondary">Bekijken</a>
-    </td>
-    </tr>
+                        <a asp-page="/Klachten/KlachtenBrief" asp-route-ID="@klacht.Id" class="btn btn-primary">Brief uitprinten</a>
+                        <a asp-page="/Klachten/Details" asp-route-ID="@klacht.Id" class="btn btn-primary">Bekijken</a>
+                    </td>
+
+                </tr>
     </tbody>
     }
 
