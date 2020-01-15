@@ -21,5 +21,6 @@ namespace Citrix.DesktopUI.Views
         {
             InitializeComponent();
         }
+
     }
 }

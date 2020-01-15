@@ -102,7 +102,7 @@
                     <td>@klacht.FirstName</td>
                     <td>@klacht.LastName</td>
                     <td>@klacht.Streetname @klacht.HuisNummer @klacht.PostCode</td>
-                    <td><input class="custom-checkbox" type="checkbox" checked="@klacht.Behandeld" disabled /></td>
+                    <td><input class="custom-checkbox" type="checkbox" checked=""@klacht.Behandeld.ToString() disabled /></td>
                     <td>@klacht.DateKlacht.Day-@klacht.DateKlacht.Month-@klacht.DateKlacht.Year</td>
                     <td>@Model.KlachtModels.Where(x => x.Streetname == klacht.Streetname).Count()</td>
                     <td>

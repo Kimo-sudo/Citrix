@@ -20,15 +20,11 @@ namespace Citrix.Controllers
         {
             _context = context;
         }
-
-        // GET: api/Dagdeels
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Dagdeel>>> GetDagdeel()
         {
             return await _context.Dagdeel.ToListAsync();
         }
-
-        // GET: api/Dagdeels/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Dagdeel>> GetDagdeel(int id)
         {
@@ -41,10 +37,6 @@ namespace Citrix.Controllers
 
             return dagdeel;
         }
-
-        // PUT: api/Dagdeels/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDagdeel(int id, Dagdeel dagdeel)
         {
@@ -73,10 +65,6 @@ namespace Citrix.Controllers
 
             return NoContent();
         }
-
-        // POST: api/Dagdeels
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
         public async Task<ActionResult<Dagdeel>> PostDagdeel(Dagdeel dagdeel)
         {
@@ -85,8 +73,6 @@ namespace Citrix.Controllers
 
             return CreatedAtAction("GetDagdeel", new { id = dagdeel.ID }, dagdeel);
         }
-
-        // DELETE: api/Dagdeels/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Dagdeel>> DeleteDagdeel(int id)
         {
@@ -101,7 +87,6 @@ namespace Citrix.Controllers
 
             return dagdeel;
         }
-
         private bool DagdeelExists(int id)
         {
             return _context.Dagdeel.Any(e => e.ID == id);

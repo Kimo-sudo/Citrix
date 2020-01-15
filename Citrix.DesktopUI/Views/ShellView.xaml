@@ -5,13 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Citrix.DesktopUI.Views"
         mc:Ignorable="d"
-        Title="ShellView" Height="450" Width="800">
+        Title="ShellView" Height="800" Width="1800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="20" />
         </Grid.ColumnDefinitions>
-        <ContentControl Grid.Column="0" x:Name="NavBar" Margin="5 5 5 5" />
-        <ContentControl Grid.Column="1" x:Name="ActiveItem" Margin="5 5 5 5"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <!-- Navigation Row1 -->
+
+        <Button x:Name="Dagmail" Grid.Column="2">Test</Button>
+        
+        <!-- Navigation Row2 -->
+        <ContentControl x:Name="ActiveItem" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="9"/>
+
+
+
     </Grid>
 </Window>

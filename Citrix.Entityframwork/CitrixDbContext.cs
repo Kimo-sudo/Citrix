@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Citrix.Models;
-using Microsoft.AspNetCore.Authorization;
-using Citrix.Models.Models.Restaurant;
-using Citrix.Models.Models.Klachten;
+using Citrix.Models.Models;
 
-namespace Citrix.Data
+namespace Citrix.EntityFrameWork
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class CitrixDbContext : DbContext
     {
         public DbSet<Manager> Manager { get; set; }
         public DbSet<ZiekModel> ZiekModel { get; set; }
@@ -20,7 +16,9 @@ namespace Citrix.Data
 
         public DbSet<RestaurantModel> Restaurant { get; set; }
 
-        public ApplicationDbContext(DbContextOptions options) : base(options){ }
-
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options)
+        {
+        }
     }
 }

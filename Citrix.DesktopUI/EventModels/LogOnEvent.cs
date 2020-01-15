@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Citrix.DesktopUI.ViewModels
+namespace Citrix.DesktopUI.EventModels
 {
-    public class NavViewModel
+    public class LogOnEvent
     {
     }
 }
+
