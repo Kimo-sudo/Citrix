@@ -1,5 +1,6 @@
 ﻿@page
 @model Citrix.IndexKlachtenModel
+@using Citrix.Models.Models.Klachten
 
 @{
     ViewData["Title"] = "Index";
@@ -54,7 +55,7 @@
             </div>
             <div class="col-6 col-md-2">
                 <label asp-for="Klacht.HuisNummer" class="control-label">Huisnummer</label>
-                <input  asp-for="Klacht.HuisNummer" class="form-control" />
+                <input asp-for="Klacht.HuisNummer" class="form-control" />
                 <span asp-validation-for="Klacht.HuisNummer" class="text-danger"></span>
             </div>
             <div class="col-6 col-md-2">
@@ -64,14 +65,29 @@
             </div>
             <div class="col-6 col-md-4">
                 <label asp-for="Klacht.DateKlacht" class="control-label">Datum van klacht</label>
-                <input asp-for="Klacht.DateKlacht" placeholder="@DateTime.Now" class="form-control" />
+                <input asp-for="Klacht.DateKlacht" class="form-control" />
                 <span asp-validation-for="Klacht.DateKlacht" class="text-danger"></span>
             </div>
-            <div class="row">
+            <div class="col-6 col-md-4">
+                <label asp-for="Klacht.KlachtDescription" class="control-label">Omschrijving klacht</label>
+                <input asp-for="Klacht.KlachtDescription" class="form-control" />
+                <span asp-validation-for="Klacht.KlachtDescription" class="text-danger"></span>
+            </div>
+            <div class="col-6 col-md-4">
+                <label asp-for="Klacht.Toegezegd" class="control-label">Wat is er toegezegd?</label>
+                <input asp-for="Klacht.Toegezegd" class="form-control" />
+                <span asp-validation-for="Klacht.Toegezegd" class="text-danger"></span>
+            </div>
+            <div class="col-6 col-md-4">
+                @Html.DropDownListFor(m => m.Klacht.SoortKlacht,
+                                    new SelectList(Enum.GetValues(typeof(TypeKlacht))),
+                                    "Catogerie Klacht")
+            </div>
+                <div class="row">
 
+                </div>
             </div>
         </div>
-    </div>
     <div class="row justify-content-center" style="margin-top: 1rem; margin-bottom: 1rem">
         <div class="col-4">
             <button type="submit" asp-page-handler="SubmitKlacht">Klacht opslaan</button>
@@ -102,7 +118,7 @@
                     <td>@klacht.FirstName</td>
                     <td>@klacht.LastName</td>
                     <td>@klacht.Streetname @klacht.HuisNummer @klacht.PostCode</td>
-                    <td><input class="custom-checkbox" type="checkbox" checked=""@klacht.Behandeld.ToString() disabled /></td>
+                    <td><input class="custom-checkbox" type="checkbox" checked="@klacht.Behandeld" disabled /></td>
                     <td>@klacht.DateKlacht.Day-@klacht.DateKlacht.Month-@klacht.DateKlacht.Year</td>
                     <td>@Model.KlachtModels.Where(x => x.Streetname == klacht.Streetname).Count()</td>
                     <td>

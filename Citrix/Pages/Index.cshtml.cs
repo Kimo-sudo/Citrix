@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Citrix.Pages
 {
-    [Authorize(Roles = "Crewtrainer")]
+    // [Authorize(Roles = "Crewtrainer")]
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;

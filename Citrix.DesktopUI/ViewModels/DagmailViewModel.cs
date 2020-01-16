@@ -16,12 +16,12 @@ namespace Citrix.DesktopUI.ViewModels
     public class DagmailViewModel : Screen
     {
         private readonly IWindowManager _window;
-        private readonly ApplicationDbContextFactory _contextFactory;
+        private readonly ApplicationDbContext _context;
         private IDataAccesUI<Manager> managerService = new GenericDataService<Manager>(new ApplicationDbContextFactory());
-        public DagmailViewModel(IWindowManager window, ApplicationDbContextFactory contextFactory)
+        public DagmailViewModel(IWindowManager window, ApplicationDbContext context)
         {
             _window = window;
-            _contextFactory = contextFactory;
+            _context = context;
 
 
         }
@@ -62,6 +62,7 @@ namespace Citrix.DesktopUI.ViewModels
         
         public async Task LoadUsers()
         {
+
             var userList = await managerService.GetAll();
             Managers = new BindingList<Manager>(userList);
 

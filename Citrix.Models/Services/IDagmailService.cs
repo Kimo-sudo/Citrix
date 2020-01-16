@@ -11,8 +11,5 @@ namespace Citrix.Models.Services
     {
         Task<Dagmail> GetDagmail(DagmailOmzet dagmailOmzet);
 
-
-
-
     }
 }

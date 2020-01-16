@@ -20,7 +20,7 @@ namespace Citrix.Data
 
         public DbSet<RestaurantModel> Restaurant { get; set; }
 
-        public ApplicationDbContext(DbContextOptions options) : base(options){ }
+        public ApplicationDbContext(DbContextOptions options) : base(options) { }
 
     }
 }

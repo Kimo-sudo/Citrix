@@ -36,7 +36,7 @@ namespace Citrix.DesktopUI.ViewModels
             get
             {
                 bool output = false;
-                if (string.IsNullOrWhiteSpace("Test") == false)
+                if (ActiveItem == _dagmailVM)
                 {
                     output = true;
                 }

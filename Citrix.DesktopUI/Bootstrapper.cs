@@ -1,10 +1,14 @@
 ﻿using Caliburn.Micro;
+using Citrix.Data;
+using Citrix.DesktopUI.Api;
+using Citrix.DesktopUI.Helpers;
 using Citrix.DesktopUI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Citrix.DesktopUI
 {
@@ -14,6 +18,10 @@ namespace Citrix.DesktopUI
         public Bootstrapper()
         {
             Initialize();
+            ConventionManager.AddElementConvention<PasswordBox>(
+            PasswordBoxHelper.BoundPasswordProperty,
+            "Password",
+            "PasswordChanged");
         }
 
         protected override void Configure()
@@ -25,7 +33,9 @@ namespace Citrix.DesktopUI
                 .Singleton<IWindowManager, WindowManager>()
                 .Singleton<IEventAggregator, EventAggregator>()
                 .Singleton<INavigationService>()
-                ;
+                .Singleton<ApplicationDbContextFactory>()
+                .Singleton<IAPIHelper, APIHelper>();
+            ;
 
 
 

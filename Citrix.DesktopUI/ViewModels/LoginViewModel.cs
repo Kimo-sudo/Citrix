@@ -1,5 +1,7 @@
 ﻿using Caliburn.Micro;
+using Citrix.DesktopUI.Api;
 using Citrix.DesktopUI.EventModels;
+using Citrix.DesktopUI.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,16 +11,19 @@ using System.Threading.Tasks;
 
 namespace Citrix.DesktopUI.ViewModels
 {
-    public class LoginViewModel : Screen
+    public class LoginViewModel : Conductor<object>
     {
         private IEventAggregator _events;
-        private string _userName = "trm@trm.com";
-        private string _password = "Qwe123.";
+        private string _userName = "admin@test.nl";
+        private string _password = "Admin-123";
         private string _errorMessage;
+        private IAPIHelper _apiHelper;
+        
 
-        public LoginViewModel(IEventAggregator events)
+        public LoginViewModel(IEventAggregator events, IAPIHelper apiHelper)
         {
             _events = events;
+            _apiHelper = apiHelper;
         }
 
         public string ErrorMessage
@@ -46,7 +51,6 @@ namespace Citrix.DesktopUI.ViewModels
                 return output;
             }
         }
-
         public string Password
         {
             get { return _password; }
@@ -57,7 +61,6 @@ namespace Citrix.DesktopUI.ViewModels
                 NotifyOfPropertyChange(() => CanLogIn);
             }
         }
-
         public string UserName
         {
             get { return _userName; }
@@ -68,7 +71,6 @@ namespace Citrix.DesktopUI.ViewModels
                 NotifyOfPropertyChange(() => CanLogIn);
             }
         }
-
         public bool CanLogIn
         {
             get
@@ -89,12 +91,28 @@ namespace Citrix.DesktopUI.ViewModels
             try
             {
                 ErrorMessage = "";
-                await _events.PublishOnUIThreadAsync(IoC.Get<LoginViewModel>(), new CancellationToken { });
+                var result = await _apiHelper.Authenticate(UserName, Password);
+                await _events.PublishOnUIThreadAsync(new LogOnEvent());
+
             }
             catch (Exception ex)
             {
-                ErrorMessage = ex.Message;
+               
+
+                switch (ex.Message)
+                {
+                    case "Bad Request":
+                        ErrorMessage = "Gebruikersnaam of wachtwoord niet correct. " +
+                            "\nWachtwoord of gebruikersnaam vergeten?" +
+                            "\n neem dan contact op met info@citrix.nl";
+                        break;
+                    default:
+                        ErrorMessage = ex.Message;
+                        break;
+                }
+
             }
+
         }
     }
 }

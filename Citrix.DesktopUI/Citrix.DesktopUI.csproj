@@ -15,8 +15,4 @@
     <ProjectReference Include="..\Citrix\Citrix.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
 </Project>

@@ -7,6 +7,16 @@
              mc:Ignorable="d" Background="Purple"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <ListBox x:Name="Managers" Grid.Row="2" Grid.Column="0" MinHeight="200" MinWidth="150">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding FirstName}" />
+                        <TextBlock Text="{Binding LastName}" FontSize="16" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
 
 

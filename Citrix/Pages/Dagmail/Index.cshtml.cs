@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Citrix
 {
-    [Authorize(Roles = "Admin")]
+  //  [Authorize(Roles = "Admin")]
     public class IndexDagmailModel : PageModel
     {
         private readonly Citrix.Data.ApplicationDbContext _context;

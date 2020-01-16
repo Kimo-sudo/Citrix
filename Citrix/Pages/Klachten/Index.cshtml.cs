@@ -53,6 +53,7 @@ namespace Citrix
         }
         public async Task<IActionResult> OnPostSubmitKlachtAsync()
         {
+            
             if (!ModelState.IsValid)
             {
                 await OnGetAsync();
@@ -61,10 +62,10 @@ namespace Citrix
             Klacht.DateAdded = DateTime.Now;
             Klacht.Behandeld = false;
 
+
             _context.Klacht.Add(Klacht);
             await _context.SaveChangesAsync();
             Klacht = new KlachtModel();
-
 
             return RedirectToPage("./Index");
 

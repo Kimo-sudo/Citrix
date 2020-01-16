@@ -16,7 +16,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Citrix.Areas.Identity.Pages.Account
 {
-    [Authorize(Roles = "Crewtrainer")]
+    // [Authorize(Roles = "Crewtrainer")]
     
     public class RegisterModel : PageModel
     {
