@@ -74,7 +74,7 @@ namespace Citrix.Controllers
             var token = new JwtSecurityToken(
                 new JwtHeader(
                     new SigningCredentials(
-                        new SymmetricSecurityKey(Encoding.UTF8.GetBytes("MySecretKeyIsSecretDoNotTellAnyonePlease")),
+                        new SymmetricSecurityKey(Encoding.UTF8.GetBytes("DitIsDeSleutelNaarAllesNietDoorvertellen")),
                         SecurityAlgorithms.HmacSha256)),
                 new JwtPayload(claims));
 

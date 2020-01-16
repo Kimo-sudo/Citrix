@@ -49,7 +49,7 @@ namespace Citrix
                     jwtBearerOptions.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("MySecretKeyIsSecretDoNotTellAnyonePlease")),
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("DitIsDeSleutelNaarAllesNietDoorvertellen")),
                         ValidateIssuer = false,
                         ValidateAudience = false,
                         ValidateLifetime = true,
