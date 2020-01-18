@@ -9,11 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Citrix.Models", "Citrix.Mod
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Citrix.DesktopUI", "Citrix.DesktopUI\Citrix.DesktopUI.csproj", "{B86000A3-FE89-4E99-80C7-DEDEE39F9573}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Citrix.APICalling", "Citrix.APICalling\Citrix.APICalling.csproj", "{9739296D-B1B0-4199-AA03-D41A78510CCD}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorCitrix", "BlazorCitrix\BlazorCitrix.csproj", "{BC5DFFFA-8102-44E7-9A95-3A9E0AA298F8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Citrix.DesktopUI.Lib", "Citrix.DesktopUI.Lib\Citrix.DesktopUI.Lib.csproj", "{0F72AD9B-A834-40CD-9BE3-F2917991C713}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingArea", "TestingArea\TestingArea.csproj", "{0B4B348C-B6C2-4FED-B0F2-CECDFDAB5220}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +33,6 @@ Global
 		{B86000A3-FE89-4E99-80C7-DEDEE39F9573}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B86000A3-FE89-4E99-80C7-DEDEE39F9573}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B86000A3-FE89-4E99-80C7-DEDEE39F9573}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9739296D-B1B0-4199-AA03-D41A78510CCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9739296D-B1B0-4199-AA03-D41A78510CCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9739296D-B1B0-4199-AA03-D41A78510CCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9739296D-B1B0-4199-AA03-D41A78510CCD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BC5DFFFA-8102-44E7-9A95-3A9E0AA298F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BC5DFFFA-8102-44E7-9A95-3A9E0AA298F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC5DFFFA-8102-44E7-9A95-3A9E0AA298F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +41,10 @@ Global
 		{0F72AD9B-A834-40CD-9BE3-F2917991C713}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F72AD9B-A834-40CD-9BE3-F2917991C713}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F72AD9B-A834-40CD-9BE3-F2917991C713}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B4B348C-B6C2-4FED-B0F2-CECDFDAB5220}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B4B348C-B6C2-4FED-B0F2-CECDFDAB5220}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B4B348C-B6C2-4FED-B0F2-CECDFDAB5220}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B4B348C-B6C2-4FED-B0F2-CECDFDAB5220}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

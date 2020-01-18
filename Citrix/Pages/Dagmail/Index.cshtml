@@ -11,7 +11,7 @@
 {
     if (date.DateAdded.Month == 1 && date.DateAdded.Year == 2020)
     {
-        <a asp-page="/Dagmail/Details" asp-route-ID="@date.ID"
+        <a asp-page="/Dagmail/Details" asp-route-ID="@date.Id"
            class="btn btn-primary m-1">@date.DateAdded.ToShortDateString()</a>
 
     }
@@ -21,7 +21,7 @@
 {
     if (date.DateAdded.Month == 2 && date.DateAdded.Year == 2020)
     {
-        <a asp-page="/Dagmail/Details" asp-route-ID="@date.ID"
+        <a asp-page="/Dagmail/Details" asp-route-ID="@date.Id"
            class="btn btn-primary m-1">@date.DateAdded.ToShortDateString()</a>
 
     }

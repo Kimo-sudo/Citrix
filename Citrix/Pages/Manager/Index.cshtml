@@ -22,11 +22,11 @@
                 </div>
                 <img class="card-img-top imageThumbnail" src="@photoPath" asp-append-version="true" />
                 <div class="card-footer text-center">
-                    <a asp-page="/Manager/Details" asp-route-ID="@manager.ID"
+                    <a asp-page="/Manager/Details" asp-route-ID="@manager.Id"
                        class="btn btn-primary m-1">Bekijken</a>
-                    <a asp-page="/Manager/Edit" asp-route-ID="@manager.ID"
+                    <a asp-page="/Manager/Edit" asp-route-ID="@manager.Id"
                        class="btn btn-secondary m-2">Aanpassen</a>
-                    <a asp-page="/Manager/Delete" asp-route-ID="@manager.ID" class="btn btn-danger m-2">Verwijderen</a>
+                    <a asp-page="/Manager/Delete" asp-route-ID="@manager.Id" class="btn btn-danger m-2">Verwijderen</a>
                 </div>
             </div>
 
@@ -48,12 +48,13 @@
                     <h1> @manager.FirstName @manager.LastName</h1>
                 </div>
                 <img class="card-img-top imageThumbnail" src="@photoPath" asp-append-version="true" />
-                <div class="card-footer text-center">
-                    <a asp-page="/Manager/Details" asp-route-ID="@manager.ID"
+                <div class="card-footer 
+                     -center">
+                    <a asp-page="/Manager/Details" asp-route-ID="@manager.Id"
                        class="btn btn-primary m-1">Bekijken</a>
-                    <a asp-page="/Manager/Edit" asp-route-ID="@manager.ID"
+                    <a asp-page="/Manager/Edit" asp-route-ID="@manager.Id"
                        class="btn btn-secondary m-2">Aanpassen</a>
-                    <a asp-page="/Manager/Delete" asp-route-ID="@manager.ID" class="btn btn-danger m-2">Verwijderen</a>
+                    <a asp-page="/Manager/Delete" asp-route-ID="@manager.Id" class="btn btn-danger m-2">Verwijderen</a>
                 </div>
             </div>
 

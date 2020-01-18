@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Citrix.Models.Models.Restaurant
 {
-    public class RestaurantModel
+    public class RestaurantModel : HoofdObject
     {
-        public int Id { get; set; }
+
 
         public string RestaurantName { get; set; }
 
@@ -14,6 +14,8 @@ namespace Citrix.Models.Models.Restaurant
 
         public string Adress { get; set; }
         public string TelefoonNummer { get; set; }
+
+        public string Email { get; set; }
 
 
     }

@@ -29,7 +29,7 @@ namespace Citrix
             {
                 return NotFound();
             }
-            Dagdeels = await _context.Dagdeel.FirstOrDefaultAsync(m => m.ID == ID);
+            Dagdeels = await _context.Dagdeel.FirstOrDefaultAsync(m => m.Id == ID);
 
             if (Dagdeels == null)
             {
@@ -53,7 +53,7 @@ namespace Citrix
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!DagdeelExisits(Dagdeels.ID))
+                if (!DagdeelExisits(Dagdeels.Id))
                 {
                     return NotFound();
                 }
@@ -63,12 +63,12 @@ namespace Citrix
                 }
             }
 
-            return RedirectToPage("./Details", new { id = Dagdeels.ID }) ;
+            return RedirectToPage("./Details", new { id = Dagdeels.Id }) ;
         }
 
         private bool DagdeelExisits(int id)
         {
-            return _context.Dagdeel.Any(e => e.ID == id);
+            return _context.Dagdeel.Any(e => e.Id == id);
         }
     }
 }

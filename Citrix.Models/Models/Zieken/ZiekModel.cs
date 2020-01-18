@@ -1,22 +1,17 @@
-﻿using Citrix.Models.Models.Restaurant;
+﻿using Citrix.Models.Models;
+using Citrix.Models.Models.Restaurant;
+using Citrix.Models.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Citrix.Models
 {
-    public class ZiekModel
+    public class ZiekModel : HoofdObject
     {
-        // Id
-        public int ID { get; set; }
-
-        /// <summary>
-        ///  Gegevens.
-        /// </summary>
-
-        [Required(ErrorMessage = "Vereist...")]
         [Display(Name = "Voornaam")]
         public string FirstName { get; set; }
 
@@ -33,7 +28,8 @@ namespace Citrix.Models
         [Display(Name = "Beter melden")]
         public bool BeterGemeld { get; set; }
 
-        [Display(Name = "Dag van ziekmelding")]
+        [ValidationRangeMonth]
+        [NotMapped]
         public DateTime DagZiek { get; set; }
 
         public RestaurantModel Restaurant { get; set; }

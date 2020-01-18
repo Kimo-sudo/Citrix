@@ -77,8 +77,8 @@
         @foreach (var ziek in Model.Zieken)
 
             if (ziek.BeterGemeld == false)
-            {
-                var days = (DateTime.Now - ziek.DagZiek);
+                {
+                   var days = (DateTime.Now - ziek.DagZiek);
 
                 <tbody>
                     <tr>
@@ -93,7 +93,7 @@
                             { <p> dagen </p>}
                         </td>
                         <td>
-                            <a asp-page="/Zieken/Details" asp-route-ID="@ziek.ID" class="btn btn-secondary">Bekijken</a>
+                            <a asp-page="/Zieken/Details" asp-route-ID="@ziek.Id" class="btn btn-secondary">Bekijken</a>
                         </td>
                     </tr>
                 </tbody>

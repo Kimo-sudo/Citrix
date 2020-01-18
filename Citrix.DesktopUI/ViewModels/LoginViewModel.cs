@@ -1,7 +1,7 @@
 ﻿using Caliburn.Micro;
-using Citrix.DesktopUI.Api;
 using Citrix.DesktopUI.EventModels;
 using Citrix.DesktopUI.Helpers;
+using Citrix.DesktopUI.lib;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,6 +13,7 @@ namespace Citrix.DesktopUI.ViewModels
 {
     public class LoginViewModel : Conductor<object>
     {
+
         private IEventAggregator _events;
         private string _userName = "admin@test.nl";
         private string _password = "Admin-123";

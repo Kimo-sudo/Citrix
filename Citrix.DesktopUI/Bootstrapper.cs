@@ -1,6 +1,5 @@
 ﻿using Caliburn.Micro;
 using Citrix.Data;
-using Citrix.DesktopUI.Api;
 using Citrix.DesktopUI.Helpers;
 using Citrix.DesktopUI.ViewModels;
 using System;
@@ -9,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using Citrix.DesktopUI.lib;
 
 namespace Citrix.DesktopUI
 {
@@ -26,7 +26,8 @@ namespace Citrix.DesktopUI
 
         protected override void Configure()
         {
-            _container.Instance(_container);
+            _container.Instance(_container)
+                .PerRequest<IDagmailEndpoint, DagmailEndpoint>();     
 
 
             _container

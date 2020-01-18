@@ -29,7 +29,7 @@ namespace Citrix
                 return NotFound();
             }
 
-            Dagdeels = await _context.Dagdeel.FirstOrDefaultAsync(m => m.ID == ID);
+            Dagdeels = await _context.Dagdeel.FirstOrDefaultAsync(m => m.Id == ID);
 
             if (Dagdeels == null)
             {

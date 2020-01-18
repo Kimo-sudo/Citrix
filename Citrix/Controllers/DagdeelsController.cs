@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Citrix.Data;
 using Citrix.Models;
+using Citrix.Data.Services;
 
 namespace Citrix.Controllers
 {
@@ -15,81 +16,26 @@ namespace Citrix.Controllers
     public class DagdeelsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly IDataService<Dagdeel> _dataService;
 
-        public DagdeelsController(ApplicationDbContext context)
+        public DagdeelsController(ApplicationDbContext context, IDataService<Dagdeel> dataService)
         {
             _context = context;
+            _dataService = dataService;
+
         }
+
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Dagdeel>>> GetDagdeel()
+        public async Task<IEnumerable<Dagdeel>> GetAllDagmail()
         {
-            return await _context.Dagdeel.ToListAsync();
-        }
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Dagdeel>> GetDagdeel(int id)
-        {
-            var dagdeel = await _context.Dagdeel.FindAsync(id);
-
-            if (dagdeel == null)
-            {
-                return NotFound();
-            }
-
-            return dagdeel;
-        }
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutDagdeel(int id, Dagdeel dagdeel)
-        {
-            if (id != dagdeel.ID)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(dagdeel).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DagdeelExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return await _dataService.GetAll();
         }
         [HttpPost]
-        public async Task<ActionResult<Dagdeel>> PostDagdeel(Dagdeel dagdeel)
-        {
-            _context.Dagdeel.Add(dagdeel);
-            await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetDagdeel", new { id = dagdeel.ID }, dagdeel);
-        }
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Dagdeel>> DeleteDagdeel(int id)
+        public async void CreateDagmail(Dagdeel dagdeel)
         {
-            var dagdeel = await _context.Dagdeel.FindAsync(id);
-            if (dagdeel == null)
-            {
-                return NotFound();
-            }
+            await _dataService.Create(dagdeel);
 
-            _context.Dagdeel.Remove(dagdeel);
-            await _context.SaveChangesAsync();
-
-            return dagdeel;
-        }
-        private bool DagdeelExists(int id)
-        {
-            return _context.Dagdeel.Any(e => e.ID == id);
         }
     }
 }

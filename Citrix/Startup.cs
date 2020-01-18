@@ -15,6 +15,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Citrix.Data.Services;
+using Citrix.Models.Models;
+using Citrix.Models;
 
 namespace Citrix
 {
@@ -24,8 +27,6 @@ namespace Citrix
         {
             Configuration = configuration;
         }
-
-
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -38,6 +39,10 @@ namespace Citrix
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddScoped<ApplicationDbContextFactory>();
+            services.AddScoped(typeof(IDataService<>), typeof(GenericDataService<>));
+
 
             services.AddRazorPages();
             services.AddAuthentication(options =>

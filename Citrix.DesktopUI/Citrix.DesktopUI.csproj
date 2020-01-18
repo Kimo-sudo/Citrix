@@ -11,8 +11,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Citrix.APICalling\Citrix.APICalling.csproj" />
+    <ProjectReference Include="..\Citrix.DesktopUI.Lib\Citrix.DesktopUI.Lib.csproj" />
     <ProjectReference Include="..\Citrix\Citrix.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

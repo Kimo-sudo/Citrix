@@ -41,7 +41,7 @@
                 </div>
 
                 <div>
-                    <a asp-page="./dagmail/Details" asp-route-id="@Model.Dagdeels.ID" class="btn btn-primary">Ga Hierheen</a>
+                    <a asp-page="./dagmail/Details" asp-route-id="@Model.Dagdeels.Id" class="btn btn-primary">Ga Hierheen</a>
                 </div>
 
             }
@@ -94,7 +94,7 @@
         <div class="card-body">
             @foreach (var manager in Model.Manager)
             {
-                <a asp-page="./Manager/Details" asp-route-id="@manager.ID" class="btn btn-outline-primary" style="width: 88%;">@manager.FirstName</a>
+                <a asp-page="./Manager/Details" asp-route-id="@manager.Id" class="btn btn-outline-primary" style="width: 88%;">@manager.FirstName</a>
 
             }
         </div>

@@ -19,6 +19,7 @@ namespace Citrix.DesktopUI.ViewModels
         private IEventAggregator _events;
         private DagmailViewModel _dagmailVM;
         private readonly ApplicationDbContext _context;
+        public bool _dagmail;
 
 
         public ShellViewModel(IEventAggregator events, DagmailViewModel dagmailVM, ApplicationDbContext context)
@@ -42,22 +43,24 @@ namespace Citrix.DesktopUI.ViewModels
                 }
                 return output;
             }
+            set
+            {
+                IsLoggedIn = value;
+
+            }
         }
-        public void Dagmail()
+
+        public void DagmailButton()
         {
+
             ActivateItemAsync(IoC.Get<DagmailViewModel>(), new CancellationToken());
+
         }
 
         public async Task HandleAsync(LogOnEvent message, CancellationToken cancellationToken)
         {
             await ActivateItemAsync(_dagmailVM, cancellationToken);
-
-           
             NotifyOfPropertyChange(() => IsLoggedIn);
         }
-
-
     }
-
-
 }

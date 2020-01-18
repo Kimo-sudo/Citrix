@@ -1,5 +1,7 @@
 ﻿using Caliburn.Micro;
 using Citrix.Data;
+using Citrix.DesktopUI.lib;
+using Citrix.DesktopUI.Lib.Models;
 using Citrix.Models;
 using Citrix.Models.Services.DataAccess;
 using Microsoft.EntityFrameworkCore;
@@ -15,28 +17,27 @@ namespace Citrix.DesktopUI.ViewModels
 {
     public class DagmailViewModel : Screen
     {
+        private readonly IDagmailEndpoint _dagmail;
         private readonly IWindowManager _window;
         private readonly ApplicationDbContext _context;
-        private IDataAccesUI<Manager> managerService = new GenericDataService<Manager>(new ApplicationDbContextFactory());
-        public DagmailViewModel(IWindowManager window, ApplicationDbContext context)
+        private BindingList<Dagmail> _dagdeels;
+
+        public DagmailViewModel(IWindowManager window, ApplicationDbContext context, IDagmailEndpoint dagmail)
         {
             _window = window;
             _context = context;
-
-
+            _dagmail = dagmail;
         }
 
-        private BindingList<Manager> _managers;
 
-        
+        public BindingList<Dagmail> Dagmail
 
-        public BindingList<Manager> Managers
         {
-            get { return _managers; }
+            get { return _dagdeels; }
             set
             {
-                _managers = value;
-                NotifyOfPropertyChange(() => Managers);
+                _dagdeels = value;
+                NotifyOfPropertyChange(() => Dagmail);
             }
         }
 
@@ -48,6 +49,7 @@ namespace Citrix.DesktopUI.ViewModels
             try
             {
                 await LoadUsers();
+                
             }
             catch (Exception ex)
             {
@@ -63,8 +65,15 @@ namespace Citrix.DesktopUI.ViewModels
         public async Task LoadUsers()
         {
 
-            var userList = await managerService.GetAll();
-            Managers = new BindingList<Manager>(userList);
+            var x = await _dagmail.GetAll();
+            var dagmails = new BindingList<Dagmail>();
+            foreach (var item in x)
+            {
+                dagmails.Add(item);
+            }
+            Dagmail = dagmails;
+           
+
 
         }
     }

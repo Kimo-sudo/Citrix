@@ -17,10 +17,9 @@ namespace Citrix.Models.Models.Klachten
         Overig
 
     }
-    public class KlachtModel
+    public class KlachtModel : HoofdObject
     {
         // back end
-        public int Id { get; set; }
         public DateTime DateAdded { get; set; }
         public bool Behandeld { get; set; } = false;
 

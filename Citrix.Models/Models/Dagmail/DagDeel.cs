@@ -1,4 +1,5 @@
-﻿using Citrix.Models.Models.Restaurant;
+﻿using Citrix.Models.Models;
+using Citrix.Models.Models.Restaurant;
 using Microsoft.OData.Edm;
 using System;
 using System.Collections.Generic;
@@ -9,10 +10,9 @@ using System.Text;
 
 namespace Citrix.Models
 {
-    public class Dagdeel
+    public class Dagdeel : HoofdObject
     {
-        public int ID { get; set; }
-        [MaxLength(140)]
+
         // Kop
         [Display(Name = "Doelstelling van de Dag")]
         public string DagDoelstelling { get; set; }

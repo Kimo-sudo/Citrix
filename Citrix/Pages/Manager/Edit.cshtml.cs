@@ -30,7 +30,7 @@ namespace Citrix
                 return NotFound();
             }
 
-            Manager = await _context.Manager.FirstOrDefaultAsync(m => m.ID == id);
+            Manager = await _context.Manager.FirstOrDefaultAsync(m => m.Id == id);
 
             if (Manager == null)
             {
@@ -56,7 +56,7 @@ namespace Citrix
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ManagerExists(Manager.ID))
+                if (!ManagerExists(Manager.Id))
                 {
                     return NotFound();
                 }
@@ -71,7 +71,7 @@ namespace Citrix
 
         private bool ManagerExists(int id)
         {
-            return _context.Manager.Any(e => e.ID == id);
+            return _context.Manager.Any(e => e.Id == id);
         }
     }
 }

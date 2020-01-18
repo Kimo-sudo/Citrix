@@ -39,7 +39,7 @@ namespace Citrix
             Managers = _context.Manager.Select(a =>
                             new SelectListItem
                             {
-                                Value = a.ID.ToString(),
+                                Value = a.Id.ToString(),
                                 Text = a.FirstName
                             }).ToList();
         }

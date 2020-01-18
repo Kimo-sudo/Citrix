@@ -24,7 +24,7 @@ namespace Citrix
                 return NotFound();
             }
 
-            ZiekModel = await _context.ZiekModel.FirstOrDefaultAsync(m => m.ID == id);
+            ZiekModel = await _context.ZiekModel.FirstOrDefaultAsync(m => m.Id == id);
 
             if (ZiekModel == null)
             {

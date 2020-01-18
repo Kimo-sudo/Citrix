@@ -30,7 +30,7 @@
         </Grid.RowDefinitions>
         <!-- Navigation Row1 -->
 
-        <Button x:Name="Dagmail" Grid.Column="2">Test</Button>
+        <Button x:Name="DagmailButton" Grid.Column="2">Test</Button>
         
         <!-- Navigation Row2 -->
         <ContentControl x:Name="ActiveItem" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="9"/>

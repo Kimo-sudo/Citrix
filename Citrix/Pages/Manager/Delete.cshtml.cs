@@ -29,7 +29,7 @@ namespace Citrix
                 return NotFound();
             }
 
-            Manager = await _context.Manager.FirstOrDefaultAsync(m => m.ID == id);
+            Manager = await _context.Manager.FirstOrDefaultAsync(m => m.Id == id);
 
             if (Manager == null)
             {
