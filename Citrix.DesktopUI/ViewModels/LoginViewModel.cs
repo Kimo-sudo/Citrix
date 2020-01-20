@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using Citrix.Data;
 using Citrix.DesktopUI.EventModels;
 using Citrix.DesktopUI.Helpers;
 using Citrix.DesktopUI.lib;
@@ -7,24 +8,30 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using System.Windows;
 
 namespace Citrix.DesktopUI.ViewModels
 {
     public class LoginViewModel : Conductor<object>
     {
 
-        private IEventAggregator _events;
-        private string _userName = "admin@test.nl";
+        private string _userName = "admin@admin.nl";
         private string _password = "Admin-123";
+
+        private IEventAggregator _events;
         private string _errorMessage;
         private IAPIHelper _apiHelper;
-        
+        private IWindowManager manager = new WindowManager();
+        private readonly IWindowManager _windowManager;
+        public bool _dagmail;
 
-        public LoginViewModel(IEventAggregator events, IAPIHelper apiHelper)
+
+        public LoginViewModel(IEventAggregator events, IAPIHelper apiHelper, IWindowManager windowManager)
         {
             _events = events;
             _apiHelper = apiHelper;
+            _windowManager = windowManager;
+            
         }
 
         public string ErrorMessage
@@ -93,8 +100,11 @@ namespace Citrix.DesktopUI.ViewModels
             {
                 ErrorMessage = "";
                 var result = await _apiHelper.Authenticate(UserName, Password);
-                await _events.PublishOnUIThreadAsync(new LogOnEvent());
 
+                await _windowManager.ShowWindowAsync(IoC.Get<ShellViewModel>());
+                await _events.PublishOnUIThreadAsync(new LogOnEvent());
+                await this.TryCloseAsync();
+                
             }
             catch (Exception ex)
             {

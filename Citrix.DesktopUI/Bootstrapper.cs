@@ -27,7 +27,8 @@ namespace Citrix.DesktopUI
         protected override void Configure()
         {
             _container.Instance(_container)
-                .PerRequest<IDagmailEndpoint, DagmailEndpoint>();     
+                .PerRequest<IDagmailEndpoint, DagmailEndpoint>()
+                .PerRequest<IKlachtenEndpoint, KlachtenEndpoint>();
 
 
             _container
@@ -50,7 +51,8 @@ namespace Citrix.DesktopUI
 
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            DisplayRootViewFor<ShellViewModel>();
+           
+            DisplayRootViewFor<LoginViewModel>();
             
         }
 

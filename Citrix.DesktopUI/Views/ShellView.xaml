@@ -4,38 +4,27 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Citrix.DesktopUI.Views"
-        mc:Ignorable="d"
+        mc:Ignorable="d" Background="White"
         Title="ShellView" Height="800" Width="1800" WindowStartupLocation="CenterScreen">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="20" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="20" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="20" />
-        </Grid.RowDefinitions>
+
         <!-- Navigation Row1 -->
+<DockPanel>
+        <Menu DockPanel.Dock="Top" FontSize="18">
+            <MenuItem Header="_Menu">
+                <MenuItem x:Name="ExitApplication" Header="E_xit" />
+            </MenuItem>
+            <MenuItem Header="_Gebruikers">
+                <MenuItem x:Name="UserManagement" Header="_Gebruikers beheren" />
+            </MenuItem>
+            <MenuItem Header="_Account">
+                <MenuItem x:Name="LogOut" Header="_Uitloggen" />
+            </MenuItem>
+        </Menu>
+        <Grid>
 
-        <Button x:Name="DagmailButton" Grid.Column="2">Test</Button>
-        
-        <!-- Navigation Row2 -->
-        <ContentControl x:Name="ActiveItem" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="9"/>
 
-
-
-    </Grid>
+            <!-- Navigation Row2 -->
+            <ContentControl x:Name="ActiveItem" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="9"/>
+        </Grid>
+    </DockPanel>
 </Window>

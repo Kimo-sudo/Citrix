@@ -17,6 +17,7 @@ namespace Citrix.Data.Services
             _contextFactory = contextFactory;
         }
 
+        // GENERIEKE CRUD
         public async Task<T> Create(T entity)
         {
             using (ApplicationDbContext context = _contextFactory.CreateDbContext())

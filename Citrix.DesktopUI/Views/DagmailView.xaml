@@ -25,19 +25,6 @@
         </Grid.RowDefinitions>
 
 
-        <ListBox x:Name="Dagmail" Grid.Row="0" Grid.RowSpan="3" Grid.Column="6">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Vertical"
-                                Grid.ColumnSpan="2">
-                        <Label Content="Voornaam"/>
-                        <TextBlock Text="{Binding Omzet}" />
-                        <Label Content="Achternaam"/>
-                        <TextBlock Text="{Binding VooraadBeheer}" FontSize="16"  />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
 
 
 

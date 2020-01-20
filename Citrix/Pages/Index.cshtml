@@ -95,8 +95,9 @@
             @foreach (var manager in Model.Manager)
             {
                 <a asp-page="./Manager/Details" asp-route-id="@manager.Id" class="btn btn-outline-primary" style="width: 88%;">@manager.FirstName</a>
-
             }
+
+            <h4> Aantal openstaande klachten :  @Model.Klachten.Where(x => x.Behandeld == false).Count()</h4>
         </div>
     </div>
 </div>

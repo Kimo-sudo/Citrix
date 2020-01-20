@@ -29,9 +29,7 @@ namespace Citrix.Models
         public bool BeterGemeld { get; set; }
 
         [ValidationRangeMonth]
-        [NotMapped]
         public DateTime DagZiek { get; set; }
 
-        public RestaurantModel Restaurant { get; set; }
     }
 }

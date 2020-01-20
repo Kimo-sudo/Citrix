@@ -1,41 +1,41 @@
 ﻿using Caliburn.Micro;
 using Citrix.Data;
 using Citrix.DesktopUI.lib;
+using Citrix.DesktopUI.Lib;
 using Citrix.DesktopUI.Lib.Models;
-using Citrix.Models;
-using Citrix.Models.Services.DataAccess;
-using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Dynamic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
 namespace Citrix.DesktopUI.ViewModels
 {
-    public class DagmailViewModel : Screen
+    public class HomeViewModel : Conductor<object>
     {
         private readonly IDagmailEndpoint _dagmail;
         private readonly IWindowManager _window;
         private readonly ApplicationDbContext _context;
         private BindingList<Dagmail> _dagdeels;
 
-        public DagmailViewModel(IWindowManager window, ApplicationDbContext context, IDagmailEndpoint dagmail)
+        private readonly IKlachtenEndpoint _klachten;
+        private BindingList<KlachtModel> _klacht;
+
+        public HomeViewModel(IWindowManager window, IKlachtenEndpoint klachten, ApplicationDbContext context, IDagmailEndpoint dagmail)
         {
             _window = window;
             _context = context;
             _dagmail = dagmail;
+            _klachten = klachten;
         }
 
-
         public BindingList<Dagmail> Dagmail
-
         {
-            get { 
-                
-                return _dagdeels; }
+            get
+            {
+
+                return _dagdeels;
+            }
             set
             {
                 _dagdeels = value;
@@ -43,15 +43,27 @@ namespace Citrix.DesktopUI.ViewModels
             }
         }
 
+        public BindingList<KlachtModel> Klachten
+        {
+            get
+            {
+                return _klacht;
+            }
+            set
+            {
+                _klacht = value;
+                NotifyOfPropertyChange(() => Klachten);
+            }
+        }
 
         protected override async void OnViewLoaded(object view)
         {
-            
+
             base.OnViewLoaded(view);
             try
             {
-                await LoadUsers();
-                
+                await LoadInfo();
+
             }
             catch (Exception)
             {
@@ -63,10 +75,10 @@ namespace Citrix.DesktopUI.ViewModels
             }
 
         }
-        
-        public async Task LoadUsers()
-        {
 
+        public async Task LoadInfo()
+        {
+            ///  Dagmail 
             var x = await _dagmail.GetAll();
             var dagmails = new BindingList<Dagmail>();
             foreach (var item in x)
@@ -74,6 +86,20 @@ namespace Citrix.DesktopUI.ViewModels
                 dagmails.Add(item);
             }
             Dagmail = dagmails;
+
+            // klachten
+
+           
+            var alleKlachten = await _klachten.GetAll();
+            var KlachtLoaded = new BindingList<KlachtModel>();
+
+            foreach (var klacht in alleKlachten)
+            {
+                KlachtLoaded.Add(klacht);
+            }
+            Klachten = KlachtLoaded;
+            
         }
     }
 }
+

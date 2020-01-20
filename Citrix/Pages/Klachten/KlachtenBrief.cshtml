@@ -126,12 +126,8 @@
                     Be happiness arranging so newspaper defective affection ye.
                     Families blessing he in to no daughter. <br><br>
 
-                    You have a right to obtain a free credit report from Acme if you request it no
-                    later than 60 days after receiving this notice. You also may dispute the report
-                    if you believe that it is inaccurate or incomplete. Acme's contact information
-                    is:<br><br>
 
-                    Acme<br>
+                    @Model.Klacht.FirstName @Model.Klacht.LastName<br>
                     @Model.Klacht.HuisNummer ,  @Model.Klacht.Streetname
                     <br>
                     @Model.Klacht.PostCode<br>
@@ -139,6 +135,9 @@
 
                     Again, thank you for your interest. If you have any questions regarding this
                     letter, please write to the following address:<br><br>
+
+                    Toegezegd:<br>
+                    <p style="font-weight: bold">@Model.Klacht.Toegezegd</p>
 
 
                     Heerde, Kampen & Zwolle<br>
@@ -165,12 +164,12 @@
 
                 <div id="return-address-window">
                     <div id="return-address-text">
-                        <!-- The Return Address will be printed here. -->
+                <!-- The Return Address will be printed here. -->
                     </div>
                 </div>
                 <div id="recipient-address-window">
                     <div id="recipient-address-text">
-                        Acme<br>
+                        McDonalds<br>
                         @Model.Klacht.HuisNummer ,  @Model.Klacht.Streetname
                         <br>
                         @Model.Klacht.PostCode<br>

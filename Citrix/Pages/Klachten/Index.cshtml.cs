@@ -51,6 +51,7 @@ namespace Citrix
                 .ToListAsync();
             HideEverything = true;
         }
+
         public async Task<IActionResult> OnPostSubmitKlachtAsync()
         {
             
@@ -70,5 +71,8 @@ namespace Citrix
             return RedirectToPage("./Index");
 
         }
+
+        
+
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Citrix.Data;
 using Citrix.Models;
+using Citrix.Models.Models.Klachten;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -29,6 +30,8 @@ namespace Citrix.Pages
 
         [BindProperty]
         public IList<Models.Manager> Manager { get; set; }
+        [BindProperty]
+        public IList<KlachtModel> Klachten { get; set; }
 
         [BindProperty]
         public IList<ZiekModel> HuidigZieken { get; set; }
@@ -45,6 +48,8 @@ namespace Citrix.Pages
             Dagdeels = await _context.Dagdeel.FirstOrDefaultAsync(m => m.DateAdded.Date == d.Date);
 
             HuidigZieken = await _context.ZiekModel.ToListAsync();
+
+            Klachten = await _context.Klacht.ToListAsync();
         }
 
         public async Task<IActionResult> OnPostAsync()

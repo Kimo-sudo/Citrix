@@ -4,14 +4,16 @@ using Citrix.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Citrix.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200119001620_RestaurantModelId")]
+    partial class RestaurantModelId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -93,7 +95,7 @@ namespace Citrix.Migrations
                         .HasColumnType("nvarchar(250)")
                         .HasMaxLength(250);
 
-                    b.Property<int?>("RestaurantModelId")
+                    b.Property<int>("RestaurantModelId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -176,6 +178,9 @@ namespace Citrix.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("RestaurantName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("TelefoonNummer")
                         .HasColumnType("nvarchar(max)");
 
@@ -194,9 +199,6 @@ namespace Citrix.Migrations
                     b.Property<bool>("BeterGemeld")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("DagZiek")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Duur")
                         .HasColumnType("nvarchar(max)");
 
@@ -210,7 +212,12 @@ namespace Citrix.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("RestaurantId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("RestaurantId");
 
                     b.ToTable("ZiekModel");
                 });
@@ -422,7 +429,16 @@ namespace Citrix.Migrations
                 {
                     b.HasOne("Citrix.Models.Models.Restaurant.RestaurantModel", null)
                         .WithMany("ManagersWerkzaam")
-                        .HasForeignKey("RestaurantModelId");
+                        .HasForeignKey("RestaurantModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Citrix.Models.ZiekModel", b =>
+                {
+                    b.HasOne("Citrix.Models.Models.Restaurant.RestaurantModel", "Restaurant")
+                        .WithMany()
+                        .HasForeignKey("RestaurantId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

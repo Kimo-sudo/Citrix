@@ -14,11 +14,11 @@ using System.Windows.Shapes;
 namespace Citrix.DesktopUI.Views
 {
     /// <summary>
-    /// Interaction logic for LoginView.xaml
+    /// Interaction logic for HomeView.xaml
     /// </summary>
-    public partial class LoginView : Window
+    public partial class HomeView : UserControl
     {
-        public LoginView()
+        public HomeView()
         {
             InitializeComponent();
         }

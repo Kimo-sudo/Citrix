@@ -1,0 +1,37 @@
+﻿using Citrix.Models.Models.Klachten;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Citrix.DesktopUI.Models
+{
+    class KlachtDisplayModel
+    {
+        // back end
+        public DateTime DateAdded { get; set; }
+        public bool Behandeld { get; set; } = false;
+
+
+        // front end 
+
+        public string FirstName { get; set; }
+
+
+        public string LastName { get; set; }
+
+
+        public int PhoneNumber { get; set; }
+
+        public string Streetname { get; set; }
+
+        public int HuisNummer { get; set; }
+
+        public string PostCode { get; set; }
+
+        public string KlachtDescription { get; set; }
+        public string Toegezegd { get; set; }
+        public TypeKlacht SoortKlacht { get; set; }
+
+        public DateTime DateKlacht { get; set; }
+    }
+}

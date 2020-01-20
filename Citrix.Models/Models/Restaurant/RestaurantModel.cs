@@ -6,10 +6,6 @@ namespace Citrix.Models.Models.Restaurant
 {
     public class RestaurantModel : HoofdObject
     {
-
-
-        public string RestaurantName { get; set; }
-
         public List<Manager> ManagersWerkzaam { get; set; }
 
         public string Adress { get; set; }

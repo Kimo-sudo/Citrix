@@ -17,19 +17,19 @@ namespace Citrix.DesktopUI.ViewModels
     {
 
         private IEventAggregator _events;
-        private DagmailViewModel _dagmailVM;
+        private HomeViewModel _homeVM;
         private readonly ApplicationDbContext _context;
         public bool _dagmail;
+        private readonly IWindowManager _windowManager;
 
 
-        public ShellViewModel(IEventAggregator events, DagmailViewModel dagmailVM, ApplicationDbContext context)
+        public ShellViewModel(IEventAggregator events, IWindowManager windowManager, HomeViewModel homeVM, ApplicationDbContext context)
         {
             _events = events;
-            _dagmailVM = dagmailVM;
+            _homeVM = homeVM;
             _events.SubscribeOnPublishedThread(this);
             _context = context;
-
-           ActivateItemAsync(IoC.Get<LoginViewModel>(), new CancellationToken());
+            _windowManager = windowManager;
         }
 
         public bool IsLoggedIn
@@ -37,7 +37,7 @@ namespace Citrix.DesktopUI.ViewModels
             get
             {
                 bool output = false;
-                if (ActiveItem == _dagmailVM)
+                if (ActiveItem == _homeVM)
                 {
                     output = true;
                 }
@@ -50,16 +50,9 @@ namespace Citrix.DesktopUI.ViewModels
             }
         }
 
-        public void DagmailButton()
-        {
-
-            ActivateItemAsync(IoC.Get<DagmailViewModel>(), new CancellationToken());
-
-        }
-
         public async Task HandleAsync(LogOnEvent message, CancellationToken cancellationToken)
         {
-            await ActivateItemAsync(_dagmailVM, cancellationToken);
+            await ActivateItemAsync(_homeVM, cancellationToken);
             NotifyOfPropertyChange(() => IsLoggedIn);
         }
     }

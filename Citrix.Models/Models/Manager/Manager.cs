@@ -27,7 +27,6 @@ namespace Citrix.Models
 
         public string Email { get; set; }
 
-        public int RestaurantModelId { get; set; }
 
 
     }
