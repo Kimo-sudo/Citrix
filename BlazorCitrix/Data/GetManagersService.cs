@@ -25,7 +25,7 @@ namespace BlazorCitrix.Data
         public async Task<List<Manager>> GetManagersOnRestAsync(int restaurant)
         {
 
-            return await _context.Manager.Where(x => x.RestaurantModelId == restaurant).ToListAsync();
+            return await _context.Manager.Where(x => x.FirstName == "Mark").ToListAsync();
 
         }
     }

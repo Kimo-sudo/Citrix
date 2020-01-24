@@ -34,7 +34,6 @@ else
     }
     private async void InsertPerson()
     {
-        man.RestaurantModelId = 2;
         await _context.Manager.AddAsync(man, new System.Threading.CancellationToken { });
         await _context.SaveChangesAsync();
     }

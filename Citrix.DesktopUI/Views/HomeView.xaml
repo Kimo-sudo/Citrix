@@ -33,7 +33,7 @@
         </Grid.RowDefinitions>
         
         <!-- row 1 -->
-        <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" FontSize="45" FontFamily="Segoe UI Light"> Dagmail </TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" FontSize="45" FontFamily="Segoe UI Light"> Dagmail </TextBlock>
         <!-- row 2 -->
         <StackPanel Grid.Column="1" Grid.Row="2" MaxHeight="400" MaxWidth="225" MinWidth="150" MinHeight="200">
             <ListBox x:Name="Dagmail" Grid.Row="0" Grid.RowSpan="3" Grid.Column="1">
@@ -43,6 +43,19 @@
                                 Grid.ColumnSpan="2">
                             <Label Content="Datum"/>
                             <TextBlock Text="{Binding DateAdded}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Grid.Row="2" MaxHeight="400" MaxWidth="225" MinWidth="150" MinHeight="200">
+            <ListBox x:Name="Klachten" Grid.Row="0" Grid.RowSpan="3" Grid.Column="1">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical"
+                                Grid.ColumnSpan="2">
+                            <Label Content="Datum"/>
+                            <TextBlock Text="{Binding Streetname}" />
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

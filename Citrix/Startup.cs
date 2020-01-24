@@ -1,12 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Citrix.Data;
 using Microsoft.Extensions.Configuration;
@@ -16,8 +12,8 @@ using Microsoft.OpenApi.Models;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Citrix.Data.Services;
-using Citrix.Models.Models;
-using Citrix.Models;
+using Newtonsoft.Json.Serialization;
+using Citrix.Models.Services;
 
 namespace Citrix
 {
@@ -32,9 +28,20 @@ namespace Citrix
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+            services.Configure<ConnectionConfig>(Configuration.GetSection("ConnectionStrings"));
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+            services.AddControllers()
+                // Camelcase to original property name
+                .AddNewtonsoftJson(options => {
+                    var resolver = options.SerializerSettings.ContractResolver;
+                    if (resolver != null)
+                        (resolver as DefaultContractResolver).NamingStrategy = null;
+
+                });
+
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
@@ -62,7 +69,8 @@ namespace Citrix
                     };
                });
 
-            services.AddControllers();
+
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });                
@@ -87,11 +95,16 @@ namespace Citrix
             
             app.UseHttpsRedirection();
             app.UseSwagger();
+            app.UseCors(options =>
+                        options.WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod());
+
 
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
-           app.UseSwaggerUI(c =>
+            app.UseSwaggerUI(c =>
            {
                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
                

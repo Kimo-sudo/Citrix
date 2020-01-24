@@ -89,7 +89,6 @@ namespace Citrix.DesktopUI.ViewModels
 
             // klachten
 
-           
             var alleKlachten = await _klachten.GetAll();
             var KlachtLoaded = new BindingList<KlachtModel>();
 
