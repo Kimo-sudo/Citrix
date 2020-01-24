@@ -1,0 +1,26 @@
+<form #form="ngForm" autocomplete="off">
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text bg-white">
+          <i class="fas fa-users"></i>
+        </div>
+      </div>
+      <input
+        name="firstName"
+        #firstName="ngModel"
+        [(ngModel)]="service.formData.firstName"
+        class="form-control"
+        placeholder="Voornaam"
+      />
+      
+      <input
+        name="lastName"
+        #lastName="ngModel"
+        [(ngModel)]="service.formData.lastName"
+        class="form-control"
+        placeholder="Achternaam"
+      />
+    </div>
+  </div>
+</form>

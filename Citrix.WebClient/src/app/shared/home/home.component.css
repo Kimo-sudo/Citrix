@@ -1,0 +1,19 @@
+#CardContainer {
+  background-color: white;
+}
+#HomeCard {
+  margin: 1rem;
+  min-height: 20rem;
+}
+
+#dashboard {
+  background-color: white;
+  min-height: 40rem;
+}
+.jumbotron {
+  background-color: whitesmoke;
+}
+.col-xs-6 {
+  margin: 2rem;
+  min-width: 32rem;
+}

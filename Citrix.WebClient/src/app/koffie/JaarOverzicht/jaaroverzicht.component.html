@@ -1,0 +1,52 @@
+<!-- button -->
+<button
+  type="button"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#JaaroverzichtModal"
+>
+  Bijverkoop(koffie) Jaaroverzicht
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="JaaroverzichtModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="JaaroverzichtModalLabel"
+  aria-hidden="true"
+>
+  <form #form="ngForm" autocomplete="off" style="margin: 20rem">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="JaaroverzichtModalLabel"></h5>
+          <p *ngIf="!KoffieVerkocht"><em>Loading...</em></p>
+          <table
+            class="table table-striped align-self-md-start"
+            aria-labelledby="tableLabel"
+            *ngIf="KoffieVerkocht"
+            style="min-width: 100%;"
+          >
+            <thead>
+              <h4>Ingevuld tot en met vandaag (YTD)</h4>
+              <tr>
+                <th>Restaurant</th>
+                <th>Percentage</th>
+                <th>maand</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let koffie of KoffieVerkocht">
+                <td>{{ koffie.NameRestaurant }}</td>
+                <td>{{ koffie.Percentage }}</td>
+                <td>{{ koffie.datum | date: "MMMM" }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

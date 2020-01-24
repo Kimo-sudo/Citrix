@@ -1,0 +1,141 @@
+<button
+  type="button"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#exampleModal"
+>
+  Gegevens invoeren
+</button>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <form
+    #form="ngForm"
+    autocomplete="off"
+    (submit)="onSubmit(form)"
+    style="margin: 4rem;"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Invoer</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <label style="font-size: large; font-weight: bold;">Jouw naam</label>
+          <!-- Manager naam-->
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text bg-white">
+                  <i class="fas fa-users"></i>
+                </div>
+              </div>
+              <input
+                name="NameManager"
+                #NameManager="ngModel"
+                [(ngModel)]="service.NameManager"
+                class="form-control"
+                placeholder="Voornaam"
+                required
+              />
+              <span
+                style="color:red"
+                ng-show="myForm.NameManager.$dirty && myForm.service.NameManager.$invalid"
+              >
+              </span>
+            </div>
+          </div>
+          <hr class="my-4" />
+
+          <!-- Restaurant naam-->
+          <label style="font-size: large; font-weight: bold;">Restaurant</label>
+          <p>Kies je Restaurant</p>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text bg-white">
+                  <i class="fas fa-coffee"></i>
+                </div>
+              </div>
+              <select
+                class="form-control"
+                name="NameRestaurant"
+                #NameRestaurant="ngModel"
+                [(ngModel)]="service.NameRestaurant"
+              >
+                <option>Zwolle-Noord</option>
+                <option>Zwolle-Zuid</option>
+                <option>Heerde</option>
+                <option>Kampen</option>
+                <option>Zwolle-Centrum</option>
+              </select>
+            </div>
+          </div>
+          <hr class="my-4" />
+
+          <!-- Koffie's -->
+          <label style="font-size: large; font-weight: bold;"
+            >Koffie's verkocht</label
+          >
+          <div class="form-row">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text bg-white">
+                  <i class="fas fa-coffee"></i>
+                </div>
+              </div>
+              <input
+                name="Medium"
+                #Medium="ngModel"
+                [(ngModel)]="service.Medium"
+                class="form-control"
+                placeholder="Medium"
+              />
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text bg-white">
+                    <i class="fas fa-coffee"></i>
+                  </div>
+                </div>
+                <input
+                  name="Groot"
+                  #Groot="ngModel"
+                  [(ngModel)]="service.Groot"
+                  class="form-control"
+                  placeholder="Groot"
+                />
+              </div>
+            </div>
+            <hr class="my-4" />
+            <div class="form-group">
+              <hr class="my-4" />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            class="btn btn-success btn-lg btn-block"
+            type="submit"
+            style="margin-top: 8px;"
+          >
+            Opsturen
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

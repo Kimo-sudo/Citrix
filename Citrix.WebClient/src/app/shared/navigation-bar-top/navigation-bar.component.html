@@ -1,0 +1,50 @@
+<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" [routerLink]="['']">Restaurant Enterprise</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/koffie']">
+          <i class="fas fa-gem"></i>
+          Franchise Battle
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+
+      <!-- dropdown -->
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbardrop"
+          data-toggle="dropdown"
+        >
+          <i class="fas fa-table"></i>
+          Cijfers
+        </a>
+        <div class="dropdown-menu">
+          <a class="nav-link" [routerLink]="['/jaar/Zwolle-Zuid']">
+            Zwolle-Zuid
+          </a>
+          <a class="nav-link" [routerLink]="['/jaar/Zwolle-Noord']">
+            Zwolle-Noord
+          </a>
+          <a class="nav-link" [routerLink]="['/jaar/Zwolle-Kampen']">
+            Kampen
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

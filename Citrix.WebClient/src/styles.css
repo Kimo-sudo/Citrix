@@ -1,0 +1,54 @@
+/* You can add global styles to this file, and also import other style files */
+.image {
+  height: 40em;
+  background-size: cover;
+  width: auto;
+  background-image: url("/assets/background.jpg");
+  background-position: 50% 50%;
+}
+
+body {
+  background-color: whitesmoke;
+}
+h1 {
+  color: black;
+}
+
+i {
+  max-width: 20px;
+  min-width: 20px;
+  max-height: 20px;
+  min-height: 20px;
+  color: green;
+}
+
+label {
+  color: midnightblue;
+}
+header[role="banner"] #logo-main {
+  display: block;
+  margin: 20px auto;
+}
+
+#navbar-primary.navbar-default {
+  background: transparent;
+  border: none;
+}
+#navbar-primary.navbar-default .navbar-nav {
+  width: 100%;
+  text-align: center;
+}
+#navbar-primary.navbar-default .navbar-nav > li {
+  display: inline-block;
+  float: none;
+}
+#navbar-primary.navbar-default .navbar-nav > li > a {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.table {
+  border-radius: 5px;
+  width: 50%;
+  margin: 0px auto;
+  float: none;
+}

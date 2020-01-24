@@ -1,0 +1,33 @@
+<div
+  class="jumbotron"
+  style="border:  5px solid #cecece;
+"
+>
+  <p *ngIf="!KoffieVerkocht"><em>Loading...</em></p>
+  <h2>Koffie Battle</h2>
+  <table
+    class="table table-striped align-self-md-start"
+    aria-labelledby="tableLabel"
+    *ngIf="KoffieVerkocht"
+    style="min-width: 100%;"
+    title="Koffie Battle"
+  >
+    <thead>
+      <tr>
+        <th>Plaats</th>
+        <th>Restaurant</th>
+        <th>Percentage</th>
+        <th>Laatste update</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let koffie of KoffieVerkocht; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ koffie.NameRestaurant }}</td>
+        <td>{{ koffie.Percentage }}</td>
+        <td>{{ koffie.datum | date: "MMM-dd " }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
