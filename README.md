@@ -1,5 +1,5 @@
 # Citrix
-Citrix using Blazor, WPF, WEB api, ASP.net RazorPages
+Citrix using Blazor, WPF, WEB api, ASP.net RazorPages, Angular
 
 Dit project is een Website/API.
 - dagmail 
