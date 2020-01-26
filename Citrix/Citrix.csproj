@@ -50,6 +50,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\NewFolder\" />
+    <Folder Include="Controllers\NewFolder1\" />
     <Folder Include="Filters\" />
     <Folder Include="Helpers\" />
     <Folder Include="Models\" />

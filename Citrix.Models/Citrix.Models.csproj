@@ -13,8 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\DataAccess\KoffieBattle\" />
-    <Folder Include="Services\Klachten\" />
     <Folder Include="Services\Manager\" />
   </ItemGroup>
 

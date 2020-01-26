@@ -2,8 +2,7 @@
   background-color: white;
 }
 #HomeCard {
-  margin: 1rem;
-  min-height: 20rem;
+  min-height: initial;
 }
 
 #dashboard {
@@ -14,6 +13,9 @@
   background-color: whitesmoke;
 }
 .col-xs-6 {
-  margin: 2rem;
+ margin-bottom: 2.8rem;
+  min-height: 32rem;
   min-width: 32rem;
+  max-height: 28rem;
+  max-width: 28rem;
 }

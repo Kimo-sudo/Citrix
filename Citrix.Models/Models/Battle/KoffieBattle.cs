@@ -12,8 +12,6 @@ namespace Citrix.Models.Models.Battle
         public int Medium { get; set; }
         public string NameManager { get; set; }
         public string NameRestaurant { get; set; }
-
-
         public string Percentage
         {
             get

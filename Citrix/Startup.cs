@@ -1,5 +1,4 @@
 using System;
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
@@ -13,7 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Citrix.Data.Services;
 using Newtonsoft.Json.Serialization;
-using Citrix.Models.Services;
+using Citrix.Models.Services.DataAccess;
 
 namespace Citrix
 {

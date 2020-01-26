@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Citrix.Models.Services
+namespace Citrix.Models.Services.DataAccess
 {
 
         public class ConnectionConfig

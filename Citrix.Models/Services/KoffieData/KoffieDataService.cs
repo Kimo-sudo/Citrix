@@ -5,7 +5,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
+using System.Threading.Tasks;
+
 
 namespace Citrix.Models.Services.KoffieData
 { 
@@ -19,26 +20,8 @@ namespace Citrix.Models.Services.KoffieData
         _con = connectionString;
     }
 
-    // Laatste invoer per restaurant
-    public List<KoffieBattle> LastInputPerRestaurant(string restaurant)
-    {
-
-        string sql = @"select top 1 * from Koffiebattle
-                       where namerestaurant = @restaurantName
-                       order by datum desc";
-        using (var connection = new SqlConnection(_con))
-        {
-
-            connection.Open();
-            var result = connection.QueryAsync<KoffieBattle>(sql, new { restaurantName = restaurant }).Result.ToList();
-            connection.Close();
-            return result;
-
-
-        }
-    }
     // Alle restaurants deze maand laatste cijfers
-    public List<KoffieBattle> LiveKoffieBattle()
+    public  IEnumerable<KoffieBattle> LiveKoffieBattle()
     {
         using (var connection = new SqlConnection(_con))
         {
@@ -51,7 +34,7 @@ namespace Citrix.Models.Services.KoffieData
 				)AS B 
 				ON A.NameRestaurant = B.NameRestaurant AND A.datum = B.datum";
 
-            var BattleMaand = connection.Query<KoffieBattle>(sql, new { huidigemaand = DateTime.Now.Month }).ToList();
+            var BattleMaand = connection.QueryAsync<KoffieBattle>(sql, new { huidigemaand = DateTime.Now.Month }).Result.ToList().OrderByDescending(x => x.Percentage);
             connection.Close();
             return BattleMaand;
         }

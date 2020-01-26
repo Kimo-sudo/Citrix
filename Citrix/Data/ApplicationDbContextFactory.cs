@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Citrix.Models.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +14,7 @@ namespace Citrix.Data
         public ApplicationDbContext CreateDbContext(string[] args = null)
         {
             var options = new DbContextOptionsBuilder<ApplicationDbContext>();
+
             options.UseSqlServer("Data Source=DESKTOP-OISNHO6; Database=CitrixData; Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
             return new ApplicationDbContext(options.Options);

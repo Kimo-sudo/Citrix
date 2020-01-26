@@ -1,12 +1,12 @@
 ﻿using Citrix.Models.Models.Battle;
-using Citrix.Models.Services;
+using Citrix.Models.Services.DataAccess;
 using Citrix.Models.Services.KoffieData;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace Citrix.Controllers.BattleControllers
 {
@@ -22,18 +22,13 @@ namespace Citrix.Controllers.BattleControllers
             _con = new KoffieDataService(connectionString);
         }
 
-        // Laatste input
+        // Huidige maand, alle restaurants.
         [HttpGet]
         public IEnumerable<KoffieBattle> GetKoffieBattleLive()
         {
-            return _con.LiveKoffieBattle().OrderByDescending(x => x.Percentage);
+            return _con.LiveKoffieBattle();
         }
-        // Laatste input refactor?
-        [HttpGet("last/{restaurant}")]
-        public IEnumerable<KoffieBattle> GetKoffieBattleLiveAsync(string restaurant)
-        {
-            return _con.LastInputPerRestaurant(restaurant).Where(x => x.datum.Month == DateTime.Now.Month);
-        }
+
         // Specifieke maand
         [HttpGet("{month}/{restaurant}")]
         public KoffieBattle GetMonthResult(int month, string restaurant)
